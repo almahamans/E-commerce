@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 
-export default function NavBar() {
+export const NavBar = () => {
   return (
     <section>
       <ul className="flex justify-around items-center bg-gray-700 text-white font-medium p-5">

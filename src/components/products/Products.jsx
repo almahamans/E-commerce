@@ -1,7 +1,7 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useContext,  } from 'react'
+import { ProductContext } from '../context/ProductContext';
 
-export default function Products() {
-  return (
-    <div>Products</div>
-  )
+export const Products = () => {
+
 }
