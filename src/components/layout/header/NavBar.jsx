@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom'
 export const NavBar = () => {
   return (
     <section>
-      <ul className="flex justify-around items-center bg-gray-700 text-white font-medium p-5">
+      <ul className="flex justify-around gap-9 text-white font-medium">
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -14,7 +14,6 @@ export const NavBar = () => {
         <li>
           <Link to="/dashboard">Dashboard</Link>
         </li>
-        <Outlet />
       </ul>
     </section>
   );
