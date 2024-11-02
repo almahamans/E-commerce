@@ -19,4 +19,5 @@ export const getSingleProduct = async (id) => {
     return []; // or handle the error as appropriate
   }
 };
+
 export const deleteProductById = () => {};
