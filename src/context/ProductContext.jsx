@@ -9,12 +9,13 @@ export const ProductProvider = ({ children }) => {
   const [productsData, setProductsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [serchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
       try {
-        const response = await getAllProducts();
+        const response = await getAllProducts(serchTerm);
         setProductsData(response);
         console.log(response)
       } catch (error) {
@@ -25,8 +26,9 @@ export const ProductProvider = ({ children }) => {
     }
     fetchProducts();
   }, []);
+
   return (
-    <ProductContext.Provider value={{ productsData, isLoading, error }}>
+    <ProductContext.Provider value={{ productsData, isLoading, error, setSearchTerm }}>
       {children}
     </ProductContext.Provider>
   );

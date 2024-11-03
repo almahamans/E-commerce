@@ -20,7 +20,7 @@ export const ProductDetails = () => {
        };
        fetchProduct();
      }, [id]);
-     console.log("hh",product)
+     console.log("peoduct details",product)
 
      if (!product) return <p>Loading...</p>;
 
