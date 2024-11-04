@@ -7,23 +7,25 @@ import { Description } from './Description';
 import { Quantity } from './Quantity';
 import { CategoryName } from './CategoryName';
 import { useParams } from 'react-router-dom';
-import { getSingleProduct } from '../../../service/ServiceProduct';
+import { getSingleProduct } from '../../../APIservice/ServiceProduct';
 
 export const ProductDetails = () => {
     const {id} = useParams();
     const [product, setProduct] = useState(null);
 
-     useEffect(() => {
-       const fetchProduct = async () => {
-         const response = await getSingleProduct(id);
-         setProduct(response.data);
-       };
-       fetchProduct();
-     }, [id]);
-     console.log("peoduct details",product)
+    const fetchProduct = async () => {
+    const response = await getSingleProduct(id)
+    setProduct(response.data)
+    }
 
-     if (!product) return <p>Loading...</p>;
+    useEffect(() => {
+      fetchProduct();
+    }, [id])
 
+    if (!product) {
+      return <h1>loading...</h1>
+    }
+    //  console.log("peoduct details",product)
     return (
       <section key={product.id} className="flex items-center justify-center gap-7 m-5 h-96 ">
         <Image Image={product.image} Title={product.productName} />

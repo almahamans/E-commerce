@@ -1,11 +1,12 @@
 import axios from "axios";
 
-export const getAllProducts = async (searchTerm) => {
+export const getAllProducts = async (searchTerm = "", currentPage = 1, pageSize = 2) => {
   try {
     const response = await axios(
-      `http://localhost:5000/api/products?search=${searchTerm}`
+      `http://localhost:5000/api/products`,
+      {params: {search: searchTerm, currentPage, pageSize}}
     );
-    return response.data.data.items;
+    return response;
   } catch (error) {
     console.error("Error fetching products:", error);
     return []; // or handle the error as appropriate

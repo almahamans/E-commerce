@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { ProductContext } from '../../context/ProductContext';
+import React, { useContext, useState } from "react";
+import { ProductContext } from "../../../context/ProductContext";
 
 export const ProductSearch = ({ onSearch }) => {
   const [search, setSearch] = useState("");
