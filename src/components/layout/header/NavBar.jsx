@@ -8,11 +8,23 @@ export const NavBar = () => {
         <li>
           <Link to="/">Home</Link>
         </li>
+        {/* <li>
+          <Link to="/list-categories">List Categories</Link>
+        </li> */}
         <li>
           <Link to="/list-products">List Products</Link>
         </li>
         <li>
           <Link to="/dashboard">Dashboard</Link>
+        </li>
+        <li>
+          <Link to="/register">Register</Link>
+        </li>
+        <li>
+          <Link to="/signin">Sign In</Link>
+        </li>
+        <li>
+          <Link to="/signout">Sign Out</Link>
         </li>
       </ul>
     </section>

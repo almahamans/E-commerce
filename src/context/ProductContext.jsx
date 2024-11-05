@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
+
 import { getAllProducts } from "../APIservice/ServiceProduct";
 
 export const ProductContext = createContext();
@@ -9,42 +10,52 @@ export const ProductProvider = ({ children }) => {
   const [productsData, setProductsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [serchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
   const [totalPages, setTotalPages] = useState(10);
-  const [pageSize] = useState(2);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(3);
+  const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      setIsLoading(true);
-      try {
-        const response = await getAllProducts(
-          serchTerm,
-          currentPage,
-          totalPages,
-          pageSize
-        );
-        setProductsData(response.data.data.items);
-        const totalCount = response.data.data.totalCount;
-        setTotalPages(Math.ceil(totalCount / pageSize));
-        if (currentPage > Math.ceil(response.data.data.totalCount / pageSize)) {
-          setCurrentPage(
-            Math.max(1, Math.ceil( response.data.data.totalCount / pageSize))
-          );
-        }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const fetchProducts = async () => {
+    setIsLoading(true);
+    try {
+      const response = await getAllProducts(
+        searchTerm,
+        pageNumber,
+        pageSize,
+        sortOrder
+      );
+      console.log("searchTerm:", searchTerm);
 
-    fetchProducts();
-  }, [currentPage, pageSize, serchTerm]);
+      setProductsData(response.data.data.items);
+      setTotalPages(response.data.data.totalPages);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  fetchProducts();
+  }, [searchTerm, pageNumber, sortOrder]);
 
   return (
     <ProductContext.Provider
-      value={{ productsData, isLoading, setIsLoading, error, setSearchTerm, currentPage, setCurrentPage, totalPages, pageSize }}
+      value={{
+        productsData,
+        isLoading,
+        setIsLoading,
+        error,
+        setSearchTerm,
+        searchTerm,
+        pageNumber,
+        setPageNumber,
+        pageSize,
+        setPageSize,
+        sortOrder,
+        setSortOrder,
+        totalPages
+      }}
     >
       {children}
     </ProductContext.Provider>

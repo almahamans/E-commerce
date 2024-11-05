@@ -1,53 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 import { ProductContext } from "../../context/ProductContext";
 import { SingleProduct } from "./productDetails/SingleProduct";
-import { ProductSearch } from "./productService/ProductSearchBar";
-import { Pagination } from "./productService/Pagination";
+import { ProductSearch } from "./productFeatures/ProductSearchBar";
+import { PaginationComponent } from "./productFeatures/Pagination";
+import { SortProducts } from "./productFeatures/SortProducts";
 
 export const Products = () => {
-  const { productsData, isLoading, currentPage, setCurrentPage, totalPages } = useContext(ProductContext);
-  // console.log("productss", productsData);
-  const [filteredProducts, setFilteredProducts] = useState(productsData);
-  const handleSearch = (searchTerm) => {
-    if (!searchTerm) {
-      setFilteredProducts(productsData);
-      return;
-    }
-    if (!productsData || productsData.length === 0) {
-     setFilteredProducts([]);
-     return
-    }
-    const results = productsData.filter((product) =>
-      product?.productName?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredProducts(results);
-  };
-
-  useEffect(() => {
-    setFilteredProducts(productsData);
-  }, [productsData]);
-  // console.log("filteredProducts", filteredProducts);
+  const { productsData } = useContext(ProductContext);
 
   return (
     <section className="flex flex-col justify-center items-center gap-4 bg-zinc-200 pt-9">
-      <ProductSearch onSearch={handleSearch} />
+      <ProductSearch />
+      {/* <SortProducts  /> */}
       <section className="flex flex-wrap justify-center items-center">
-        {isLoading ? (
-          <h1 className="font-bold">Loading...</h1>
-        ) : filteredProducts.length === 0 ? (
-          <h2 className="font-bold">No products found</h2>
-        ) : (
-          filteredProducts.map((product) => {
+        {productsData && productsData.length > 0 ? (
+          productsData.map((product) => {
             return <SingleProduct products={product} key={product.productId} />;
           })
+        ) : (
+          <h1 className="font-bold">No products found</h1>
         )}
       </section>
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        onPageChange={setCurrentPage}
-      />
+      <PaginationComponent />
     </section>
   );
 };

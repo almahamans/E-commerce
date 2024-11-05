@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import { ProductContext } from "../../../context/ProductContext";
 
-export const ProductSearch = ({ onSearch }) => {
+export const ProductSearch = () => {
   const [search, setSearch] = useState("");
   const { setSearchTerm } = useContext(ProductContext);
+  
   const handleSearch = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
     setSearch(value);
-    onSearch(value);
   };
   return (
     <section>
