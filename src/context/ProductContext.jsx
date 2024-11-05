@@ -14,47 +14,53 @@ export const ProductProvider = ({ children }) => {
   const [totalPages, setTotalPages] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(3);
+  const [sortBy, setSortBy] = useState("CreatedAt");
   const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
-  const fetchProducts = async () => {
-    setIsLoading(true);
-    try {
-      const response = await getAllProducts(
-        searchTerm,
-        pageNumber,
-        pageSize,
-        sortOrder
-      );
-      console.log("searchTerm:", searchTerm);
+    const fetchProducts = async () => {
+      setIsLoading(true);
+      try {
+        const response = await getAllProducts(
+          pageNumber,
+          pageSize,
+          searchTerm,
+          sortBy,
+          sortOrder
+        );
+        console.log("searchTerm:", searchTerm);
 
-      setProductsData(response.data.data.items);
-      setTotalPages(response.data.data.totalPages);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  fetchProducts();
-  }, [searchTerm, pageNumber, sortOrder]);
+        setProductsData(response.data.data.items);
+        setTotalPages(response.data.data.totalPages);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchProducts();
+  }, [searchTerm, pageNumber, sortBy, sortOrder]);
 
   return (
     <ProductContext.Provider
       value={{
         productsData,
+        setProductsData,
         isLoading,
         setIsLoading,
         error,
-        setSearchTerm,
+        setError,
         searchTerm,
+        setSearchTerm,
+        totalPages,
         pageNumber,
         setPageNumber,
         pageSize,
         setPageSize,
+        sortBy,
+        setSortBy,
         sortOrder,
         setSortOrder,
-        totalPages
       }}
     >
       {children}

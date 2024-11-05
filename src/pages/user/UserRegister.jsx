@@ -84,11 +84,16 @@ export const UserRegisterForm = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Signed Up</h1>
-      <form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
+    <div className="mt-9">
+      <h1 className="text-center mb-9 font-bold uppercase text-red-800">
+        Register
+      </h1>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-5 mx-auto w-96"
+      >
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
+          <label htmlFor="name" className="mr-12">
             Name:
           </label>
           <input
@@ -98,13 +103,13 @@ export const UserRegisterForm = () => {
             value={user.name}
             onChange={handleChange}
             required
-            className="form-control"
+            className="border-2 border-gray-700 p-1 w-72"
           />
-          {errors.name && <p className="text-danger">{errors.name}</p>}
+          {errors.name && <p className="text-red-500">{errors.name}</p>}
         </div>
 
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
+          <label htmlFor="email" className="mr-12">
             Email:
           </label>
           <input
@@ -114,13 +119,13 @@ export const UserRegisterForm = () => {
             value={user.email}
             onChange={handleChange}
             required
-            className="form-control"
+            className="border-2 border-gray-700 p-1 w-72"
           />
-          {errors.email && <p className="text-danger">{errors.email}</p>}
+          {errors.email && <p className="text-red-500">{errors.email}</p>}
         </div>
 
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">
+          <label htmlFor="password" className="mr-5">
             Password:
           </label>
           <input
@@ -130,19 +135,32 @@ export const UserRegisterForm = () => {
             value={user.password}
             onChange={handleChange}
             required
-            className="form-control"
+            className="border-2 border-gray-700 p-1 w-72"
           />
-          {errors.password && <p className="text-danger">{errors.password}</p>}
+          {errors.password && <p className="text-red-500">{errors.password}</p>}
         </div>
 
-        {errors.server && <p className="text-danger">{errors.server}</p>}
+        {errors.server && <p className="text-red-500">{errors.server}</p>}
 
-        <button type="submit" className="btn btn-primary w-100">
+        <button
+          type="submit"
+          className="mx-auto mt-12 p-1 rounded bg-green-600 w-44"
+        >
           Register
         </button>
       </form>
-    <h1>Alredy signed up?</h1>
-    <button onClick={()=>{navigate("/signin");}}>Click to sign in</button>
+
+      <div className="flex justify-center items-center mt-5 gap-2">
+        <h1 className="">Already signed up?</h1>
+        <button
+          onClick={() => {
+            navigate("/signin");
+          }}
+          className="underline w-fit"
+        >
+          Click here to sign in
+        </button>
+      </div>
     </div>
   );
 };

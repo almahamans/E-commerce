@@ -1,35 +1,55 @@
 import React, { useContext, useState } from 'react'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 import { ProductContext } from '../../../context/ProductContext';
 
-export const SortProducts = ({ onSortOrderChange}) => {
-  const { setSortOrder, sortOrder } = useContext(ProductContext);
-  const [sortBy, setSortBy] = useState("");
+export const SortProducts = () => {
+  const { setSortBy, sortBy, setSortOrder, sortOrder } = useContext(ProductContext);
 
-  const handleSorting = (e) => {
-    const value = e.target.value;
-    setSortOrder(value);
-    setSortBy(value);
-  }
+const handleSortByChange = (event) => {
+  setSortBy(event.target.value || "CreatedAt");
+};
+
+const handleSortOrderChange = (event) => {
+  setSortOrder(event.target.value || "asc");
+};
 
     return (
       <div>
-        <h1>Sort By:</h1>
-        <select onChange={handleSorting} value={sortOrder}>
-          <option value="" disabled>
-            <span>Select an Order</span>
-          </option>
-          <option value="price">Price</option>
-          <option value="date">date</option>
-        </select>
-        <h1>Sort Order:</h1>
-        <select onChange={handleSorting} value={sortOrder}>
-          <option value="" disabled>
-            <span>Select an Order</span>
-          </option>
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-        </select>
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <InputLabel id="sortByInputLabel">Sort By:</InputLabel>
+          <Select
+            labelId="sortByInputLabel"
+            id="sortByInput"
+            value={sortBy}
+            label="SortBy"
+            onChange={handleSortByChange}
+          >
+            <MenuItem value="">
+              <em>Select</em>
+            </MenuItem>
+            <MenuItem value={"Price"}>Price</MenuItem>
+            <MenuItem value={"CreatedAt"}>Date</MenuItem>
+          </Select>
+          {/* <FormHelperText>With label + helper text</FormHelperText> */}
+        </FormControl>
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <InputLabel id="sortOrderInputlabel">Sort Order:</InputLabel>
+          <Select
+            labelId="sortOrderInputlabel"
+            id="sortOrderInput"
+            value={sortOrder}
+            label="SortOrder"
+            onChange={handleSortOrderChange}
+          >
+            <MenuItem value="">
+              <em>Select</em>
+            </MenuItem>
+            <MenuItem value={"asc"}>Ascending</MenuItem>
+            <MenuItem value={"desc"}>Descending</MenuItem>
+          </Select>
+          {/* <FormHelperText>With label + helper text</FormHelperText> */}
+        </FormControl>
       </div>
     );
 };
