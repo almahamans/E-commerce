@@ -71,7 +71,7 @@ export const UserRegisterForm = () => {
           isSignIn: true,
         };
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
-
+        localStorage.setItem("isSignIn", true);
         navigate("/");
       } catch (error) {
         console.error("Registration failed:", error);

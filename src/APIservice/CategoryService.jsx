@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const getAllCategories = async () => {
   try {
     const response = await axios(`http://localhost:5000/api/categories`);

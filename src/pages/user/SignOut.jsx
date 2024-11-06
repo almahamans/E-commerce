@@ -1,10 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export const SignOut = () => {
+  const navigate = useNavigate();
+
     return (
       <div>
-        <h1>you are logged out now...</h1>
-        {localStorage.removeItem("isLogin")}
+        <button onClick={()=>{
+          localStorage.removeItem("isSignIn");
+          navigate("/");
+        }}> click to confirm Log out</button>
       </div>
     );
 }

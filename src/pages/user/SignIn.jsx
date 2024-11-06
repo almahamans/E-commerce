@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { UserLogin } from '../../APIservice/UserService';
 
 export const SignIn = () => {
     const [userData, setUserData] = useState({
         email: "",
-        password: "",
-    });
-    const [error, setError] = useState({ value: "" });
-    
+        password: ""
+    })
+
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -15,22 +15,30 @@ export const SignIn = () => {
         return {
             ...prevState,
             [e.target.name]: e.target.value,
-        };
-        });
+        }
+        })
     };
 
 const handleSubmit = async (event) => {
   event.preventDefault();
   try {
-    const token = await loginUser(userData.email, userData.password);
-    if (token) {
-      const updatedLoginInfo = { email: userData.email, isSignIn: true, token };
-      localStorage.setItem("userInfo", JSON.stringify(updatedLoginInfo));
-      navigate("/", { state: updatedLoginInfo });
+    const userLogInfo = await UserLogin(userData.email, userData.password);
+
+    if (userLogInfo.token && userLogInfo.token !== "Email/Password is incorrect") {
+      localStorage.setItem("isLogin", true);
+      localStorage.setItem("token", userLogInfo.token);
+      localStorage.setItem("isSignIn", true);
+      const isSign = localStorage.getItem("userInfo");
+      console.log("issign",isSign.isSignIn)
+      if (isSign.isSignIn){
+        
+      }
+      navigate("/");
+    }else{
+      return
     }
   } catch (err) {
-    console.error("Login failed:", err); 
-    setError(err.message); 
+    console.error("Login failed:", err);  
   }
 };
 

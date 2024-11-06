@@ -22,32 +22,36 @@ export const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
+      {
+        path: "/list-categories",
+        element: <Categories />,
+      },
       // {
       //   path: "/",
       //   element: <ProtectedRoute />,
       //   children: [
-          {
-            path: "signin",
-            element: <SignIn />,
-          },
-          {
-            path: "list-products",
-            element: <Products />,
-          },
-          {
-            path: "product-details/:id",
-            element: <ProductDetails />,
-          },
-          {
-            path: "dashboard",
-            element: <Dashboard />,
-          },
-          {
-            path: "register",
-            element: <UserRegisterForm />,
-          },
+      {
+        path: "list-products",
+        element: <Products />,
+      },
+      {
+        path: "product-details/:id",
+        element: <ProductDetails />,
+      },
+      {
+        path: "dashboard",
+        element: <Dashboard />,
+      },
       //   ],
       // },
+      {
+        path: "register",
+        element: <UserRegisterForm />,
+      },
+      {
+        path: "signin",
+        element: <SignIn />,
+      },
       {
         path: "signout",
         element: <SignOut />,
