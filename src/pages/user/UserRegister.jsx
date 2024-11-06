@@ -105,7 +105,9 @@ export const UserRegisterForm = () => {
             required
             className="border-2 border-gray-700 p-1 w-72"
           />
-          {errors.name && <p className="text-red-500">{errors.name}</p>}
+          {errors.name && (
+            <p className="text-red-500 text-center">{errors.name}</p>
+          )}
         </div>
 
         <div className="mb-3">
@@ -121,7 +123,9 @@ export const UserRegisterForm = () => {
             required
             className="border-2 border-gray-700 p-1 w-72"
           />
-          {errors.email && <p className="text-red-500">{errors.email}</p>}
+          {errors.email && (
+            <p className="text-red-500 text-center">{errors.email}</p>
+          )}
         </div>
 
         <div className="mb-3">
@@ -137,10 +141,14 @@ export const UserRegisterForm = () => {
             required
             className="border-2 border-gray-700 p-1 w-72"
           />
-          {errors.password && <p className="text-red-500">{errors.password}</p>}
+          {errors.password && (
+            <p className="text-red-500 text-center">{errors.password}</p>
+          )}
         </div>
 
-        {errors.server && <p className="text-red-500">{errors.server}</p>}
+        {errors.server && (
+          <p className="text-red-500 text-center">{errors.server}</p>
+        )}
 
         <button
           type="submit"

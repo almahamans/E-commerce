@@ -2,6 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export const NavBar = () => {
+  
+  const handleLogOut = () => {
+    localStorage.removeItem("isSignIn");
+  }
   return (
     <section>
       <ul className="flex justify-around gap-9 text-white font-medium">
@@ -24,7 +28,7 @@ export const NavBar = () => {
           <Link to="/signin">Sign In</Link>
         </li>
         <li>
-          <Link to="/signout">Sign Out</Link>
+          <Link to="/" onClick={handleLogOut}>Sign Out</Link>
         </li>
       </ul>
     </section>

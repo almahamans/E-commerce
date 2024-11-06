@@ -7,7 +7,7 @@ export const SignIn = () => {
         email: "",
         password: ""
     })
-
+    const [errors, setErrors] = useState("");
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -25,16 +25,12 @@ const handleSubmit = async (event) => {
     const userLogInfo = await UserLogin(userData.email, userData.password);
 
     if (userLogInfo.token && userLogInfo.token !== "Email/Password is incorrect") {
-      localStorage.setItem("isLogin", true);
       localStorage.setItem("token", userLogInfo.token);
       localStorage.setItem("isSignIn", true);
-      const isSign = localStorage.getItem("userInfo");
-      console.log("issign",isSign.isSignIn)
-      if (isSign.isSignIn){
-        
-      }
       navigate("/");
     }else{
+      console.error("Email/Password is incorrect");
+      setErrors("Email/Password is incorrect");
       return
     }
   } catch (err) {
@@ -43,35 +39,59 @@ const handleSubmit = async (event) => {
 };
 
     return (
-      <section>
-        <h1>Sign In</h1>
-        <form onSubmit={handleSubmit}>
-          <section>
-            <label htmlFor="email">Email:</label>
+      <section className="mt-9">
+        <h1 className="text-center mb-9 font-bold uppercase text-red-800">
+          Sign In
+        </h1>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-5 mx-auto w-96"
+        >
+          <section className="mb-3">
+            <label htmlFor="email" className="mr-12">
+              Email:
+            </label>
             <input
               type="email"
               name="email"
               id="email"
               value={userData.email}
               onChange={handleInputChange}
+              className="border-2 border-gray-700 p-1 w-72"
             />
           </section>
-          <section>
-            <label htmlFor="password">Password</label>
+          <section className="mb-3">
+            <label htmlFor="password" className="mr-5">
+              Password:
+            </label>
             <input
               type="password"
               name="password"
               id="password"
               value={userData.password}
               onChange={handleInputChange}
+              className="border-2 border-gray-700 p-1 w-72"
             />
           </section>
-          <button>Sign In</button>
+          {errors && <p className="text-red-500 text-center">{errors}</p>}
+          <button
+            type="submit"
+            className="mx-auto mt-12 p-1 rounded bg-green-600 w-44"
+          >
+            Sign In
+          </button>
         </form>
-        <h1>Do not have an account?</h1>
-        <button onClick={() => { navigate("/register"); }}>
-          Click to Register
-        </button>
+        <div className="flex justify-center items-center mt-5 gap-2">
+          <h1>Do not have an account?</h1>
+          <button
+            onClick={() => {
+              navigate("/register");
+            }}
+            className="underline w-fit"
+          >
+            Click here to Register
+          </button>
+        </div>
       </section>
     );
 }

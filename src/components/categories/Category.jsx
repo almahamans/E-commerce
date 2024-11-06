@@ -1,12 +1,11 @@
 import React from 'react'
-import { Image } from '../Image';
-import { Title } from '../Title';
 
-export const Category = () => {
+import { Title } from "../Title";
+
+export const Category = ({info}) => {
     return (
-      <section>
-        <Title Name={category.categoryName} />
-        <Image Image={image} Title={productName} />
-      </section>
+      <div className="border box-border m-5 w-64 h-80 text-center">
+        <Title Name={info.categoryName} />
+      </div>
     );
 }

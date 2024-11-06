@@ -8,7 +8,6 @@ import { Layout } from "../components/layout/Layout";
 import { ProductDetails } from "../components/products/productDetails/ProductDetails";
 import { Categories } from "../components/categories/Categories";
 import { SignIn } from "../pages/user/SignIn";
-import { SignOut } from "../pages/user/SignOut";
 import { UserRegisterForm } from "../pages/user/UserRegister";
 import { ProtectedRoute } from "./ProtectedRoute";
 
@@ -51,11 +50,7 @@ export const router = createBrowserRouter([
       {
         path: "signin",
         element: <SignIn />,
-      },
-      {
-        path: "signout",
-        element: <SignOut />,
-      },
+      }
     ],
   },
 ]);
