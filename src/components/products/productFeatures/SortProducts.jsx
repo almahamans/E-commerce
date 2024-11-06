@@ -4,14 +4,14 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { ProductContext } from '../../../context/ProductContext';
 
 export const SortProducts = () => {
-  const { setSortBy, sortBy, setSortOrder, sortOrder } = useContext(ProductContext);
+  const { sortBy, setSortBy, sortOrder, setSortOrder } = useContext(ProductContext);
 
 const handleSortByChange = (event) => {
-  setSortBy(event.target.value || "CreatedAt");
+  setSortBy(event.target.value);
 };
 
 const handleSortOrderChange = (event) => {
-  setSortOrder(event.target.value || "asc");
+  setSortOrder(event.target.value);
 };
 
     return (
@@ -20,33 +20,28 @@ const handleSortOrderChange = (event) => {
           <InputLabel id="sortByInputLabel">Sort By:</InputLabel>
           <Select
             labelId="sortByInputLabel"
-            id="sortByInput"
+            id='sort-by-id'
             value={sortBy}
-            label="SortBy"
+            label="Sort By"
             onChange={handleSortByChange}
           >
-            <MenuItem value="">
-              <em>Select</em>
-            </MenuItem>
-            <MenuItem value={"Price"}>Price</MenuItem>
-            <MenuItem value={"CreatedAt"}>Date</MenuItem>
+            <MenuItem value="Price">Price</MenuItem>
+            <MenuItem value="CreatedAt">Date</MenuItem>
           </Select>
           {/* <FormHelperText>With label + helper text</FormHelperText> */}
         </FormControl>
+
         <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
           <InputLabel id="sortOrderInputlabel">Sort Order:</InputLabel>
           <Select
             labelId="sortOrderInputlabel"
-            id="sortOrderInput"
+            id='sort-order-id'
             value={sortOrder}
-            label="SortOrder"
+            label="Sort Order"
             onChange={handleSortOrderChange}
           >
-            <MenuItem value="">
-              <em>Select</em>
-            </MenuItem>
-            <MenuItem value={"asc"}>Ascending</MenuItem>
-            <MenuItem value={"desc"}>Descending</MenuItem>
+            <MenuItem value="asc">Ascending</MenuItem>
+            <MenuItem value="desc">Descending</MenuItem>
           </Select>
           {/* <FormHelperText>With label + helper text</FormHelperText> */}
         </FormControl>

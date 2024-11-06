@@ -4,23 +4,24 @@ const baseUrl = import.meta.env.VITE_BASE_URL;
 const endPoint = `${baseUrl}/api/products`;
 
 export const getAllProducts = async (
+  searchTerm = "",
   pageNumber = 1,
   pageSize = 3,
-  searchTerm = "",
   sortBy = "CreatedAt",
   sortOrder = "asc"
 ) => {
   const params = new URLSearchParams();
+  if (searchTerm) {
+    params.append("searchTerm", searchTerm);
+  }
   params.append("pageNumber", pageNumber);
   params.append("pageSize", pageSize);
-  params.append("searchTerm", searchTerm);
   params.append("sortBy", sortBy);
   params.append("sortOrder", sortOrder);
 
   const url = `${endPoint}?${params.toString()}`;
-  const response = await axios.get(url);
-  console.log("urlllllll", url);
-
+  const response = await axios(url);
+  // console.log("urlllllll", url);
   return response;
 };
 

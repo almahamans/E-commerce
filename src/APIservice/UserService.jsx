@@ -48,11 +48,4 @@ export const UserLogin = async (email, password) => {
       return("An error occurred during login.");
     }
   }
-
-  // if (!response.ok) {
-  //   const errorData = await response.data;
-  //   throw new Error(errorData.message); 
-  // }
-  // const data = await response.json();
-  // return data.token; 
 };
