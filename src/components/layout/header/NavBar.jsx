@@ -10,9 +10,6 @@ export const NavBar = () => {
     <section>
       <ul className="flex justify-around gap-9 text-white font-medium">
         <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
           <Link to="/categories">List Categories</Link>
         </li>
         <li>
@@ -20,12 +17,6 @@ export const NavBar = () => {
         </li>
         <li>
           <Link to="/cart">Cart</Link>
-        </li>
-        <li>
-          <Link to="/register">Register</Link>
-        </li>
-        <li>
-          <Link to="/signin">Sign In</Link>
         </li>
         <li>
           <Link to="/" onClick={handleSignOut}>Sign Out</Link>

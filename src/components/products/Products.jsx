@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import { ProductContext } from "../../context/ProductContext";
 import { SingleProduct } from "./productDetails/SingleProduct";
-import { PaginationComponent } from "./productFeatures/Pagination";
+import { PaginationComponent } from "../../utilities/Pagination";
 import { SearchBar } from "../../utilities/SearchBar";
 import { SortFeature } from "../../utilities/SortFeature";
 
