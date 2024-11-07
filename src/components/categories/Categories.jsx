@@ -8,15 +8,13 @@ export const Categories = () => {
 
     return (
       <section className="flex flex gap-5 justify-center items-center flex-wrap">
-        {
+        { categoriesData && categoriesData.length > 0 ?
             categoriesData.map(category => {
-                return <Category info={category} key={category.catgoryId}/>;
-            })
+                return <Category info={category} key={category.categoryId} />;
+            }) : (
+              <h1>No data to show</h1>
+            )
         }
-
-        {/* <button className="border-2 px-3 rounded-lg border-gray-700 text-sm mb-2">
-          Show Details
-        </button> */}
       </section>
     );
 }

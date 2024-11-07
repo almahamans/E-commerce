@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { UserRegister } from "../../APIservice/UserService";
+import { UserRegister, UserSignIn } from "../../APIservice/UserService";
 
 export const UserRegisterForm = () => {
   const navigate = useNavigate();
@@ -52,36 +52,37 @@ export const UserRegisterForm = () => {
     return Object.keys(newError).length === 0; // return true if no error
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (validDataInput()) {
-      try {
-        const response = await UserRegister(
-          user.name,
-          user.password,
-          user.email
-        );
-        console.log(response); // Handle successful registration response
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  if (validDataInput()) {
+    try {
+      const registerResponse = await UserRegister(
+        user.name,
+        user.password,
+        user.email
+      );
+      console.log("user register info", registerResponse);
+      // automatically log in the user after registration and set loaclstorage
+      const signInResponse = await UserSignIn(user.email, user.password);
+      console.log("signin info", signInResponse);
 
-        // Save user data in local storage
-        const userInfo = {
-          name: user.name,
-          password: user.password,
-          email: user.email,
-          isSignIn: true,
-        };
-        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+      if (signInResponse.token) {
+        localStorage.setItem("token", signInResponse.token);
         localStorage.setItem("isSignIn", true);
+
         navigate("/");
-      } catch (error) {
-        console.error("Registration failed:", error);
-        setErrors({
-          ...errors,
-          server: "Registration failed. Please try again.",
-        });
+      } else {
+        setErrors({ ...errors, server: "SignIn failed after registration." });
       }
+    } catch (error) {
+      console.error("registration failed:", error);
+      setErrors({
+        ...errors,
+        server: "Registration failed.",
+      });
     }
-  };
+  }
+};
 
   return (
     <div className="mt-9">

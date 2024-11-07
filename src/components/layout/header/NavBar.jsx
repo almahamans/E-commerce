@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const NavBar = () => {
   
-  const handleLogOut = () => {
+  const handleSignOut = () => {
     localStorage.removeItem("isSignIn");
   }
   return (
@@ -19,7 +19,7 @@ export const NavBar = () => {
           <Link to="/list-products">List Products</Link>
         </li>
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/cart">Cart</Link>
         </li>
         <li>
           <Link to="/register">Register</Link>
@@ -28,7 +28,7 @@ export const NavBar = () => {
           <Link to="/signin">Sign In</Link>
         </li>
         <li>
-          <Link to="/" onClick={handleLogOut}>Sign Out</Link>
+          <Link to="/" onClick={handleSignOut}>Sign Out</Link>
         </li>
       </ul>
     </section>

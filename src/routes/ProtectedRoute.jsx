@@ -4,6 +4,6 @@ import { SignIn } from "../pages/user/SignIn";
 import { Layout } from "../components/layout/Layout";
 
 export const ProtectedRoute = () => {
-  const isLogin = localStorage.getItem("isLogin");
-  return <div>{isLogin ? <Outlet /> : <SignIn />}</div>;
+  const isSignIn = localStorage.getItem("isSignIn");
+  return <div>{isSignIn ? <Outlet /> : <SignIn />}</div>;
 };

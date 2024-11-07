@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { UserLogin } from '../../APIservice/UserService';
+
+import { UserSignIn } from '../../APIservice/UserService';
 
 export const SignIn = () => {
     const [userData, setUserData] = useState({
         email: "",
         password: ""
     })
-    const [errors, setErrors] = useState("");
+    const [errors, setErrors] = useState({});
+
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -21,77 +23,87 @@ export const SignIn = () => {
 
 const handleSubmit = async (event) => {
   event.preventDefault();
+  if(!userData.email || !userData.password){
+    setErrors("Email/Password is incorrect");
+    return;
+  }
   try {
-    const userLogInfo = await UserLogin(userData.email, userData.password);
+    const userSignInfo = await UserSignIn(userData.email, userData.password);
 
-    if (userLogInfo.token && userLogInfo.token !== "Email/Password is incorrect") {
-      localStorage.setItem("token", userLogInfo.token);
+    if (userSignInfo.token && userSignInfo.token !== "Email/Password is incorrect"){
+      localStorage.setItem("token", userSignInfo.token);
       localStorage.setItem("isSignIn", true);
       navigate("/");
-    }else{
+    } else {
       console.error("Email/Password is incorrect");
       setErrors("Email/Password is incorrect");
-      return
+      return;
     }
   } catch (err) {
-    console.error("Login failed:", err);  
+    console.error("signIn failed:", err); 
+    setErrors("SignIn failed"); 
   }
 };
-
-    return (
-      <section className="mt-9">
-        <h1 className="text-center mb-9 font-bold uppercase text-red-800">
-          Sign In
-        </h1>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col gap-5 mx-auto w-96"
+  return (
+    <section className="mt-9">
+      <h1 className="text-center mb-9 font-bold uppercase text-red-800">
+        Sign In
+      </h1>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-5 mx-auto w-96"
+      >
+        <section className="mb-3">
+          <label htmlFor="email" className="mr-12">
+            Email:
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={userData.email}
+            onChange={handleInputChange}
+            className="border-2 border-gray-700 p-1 w-72"
+          />
+          {errors.email && (
+            <p className="text-red-500 text-center">{errors.email}</p>
+          )}
+        </section>
+        <section className="mb-3">
+          <label htmlFor="password" className="mr-5">
+            Password:
+          </label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={userData.password}
+            onChange={handleInputChange}
+            className="border-2 border-gray-700 p-1 w-72"
+          />
+          {errors.password && (
+            <p className="text-red-500 text-center">{errors.password}</p>
+          )}
+        </section>
+        {/* {errors && <p className="text-red-500 text-center">{errors}</p>} */}
+        <button
+          type="submit"
+          className="mx-auto mt-12 p-1 rounded bg-green-600 w-44"
         >
-          <section className="mb-3">
-            <label htmlFor="email" className="mr-12">
-              Email:
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={userData.email}
-              onChange={handleInputChange}
-              className="border-2 border-gray-700 p-1 w-72"
-            />
-          </section>
-          <section className="mb-3">
-            <label htmlFor="password" className="mr-5">
-              Password:
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={userData.password}
-              onChange={handleInputChange}
-              className="border-2 border-gray-700 p-1 w-72"
-            />
-          </section>
-          {errors && <p className="text-red-500 text-center">{errors}</p>}
-          <button
-            type="submit"
-            className="mx-auto mt-12 p-1 rounded bg-green-600 w-44"
-          >
-            Sign In
-          </button>
-        </form>
-        <div className="flex justify-center items-center mt-5 gap-2">
-          <h1>Do not have an account?</h1>
-          <button
-            onClick={() => {
-              navigate("/register");
-            }}
-            className="underline w-fit"
-          >
-            Click here to Register
-          </button>
-        </div>
-      </section>
-    );
+          Sign In
+        </button>
+      </form>
+      <div className="flex justify-center items-center mt-5 gap-2">
+        <h1>Do not have an account?</h1>
+        <button
+          onClick={() => {
+            navigate("/register");
+          }}
+          className="underline w-fit"
+        >
+          Click here to Register
+        </button>
+      </div>
+    </section>
+  );
 }

@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import { NavBar } from "../components/layout/header/NavBar";
+
 import { Products } from "../components/products/Products";
-import { Dashboard } from "../pages/user/Dashboard";
 import { ErrorPage } from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import { Layout } from "../components/layout/Layout";
@@ -10,6 +9,7 @@ import { Categories } from "../components/categories/Categories";
 import { SignIn } from "../pages/user/SignIn";
 import { UserRegisterForm } from "../pages/user/UserRegister";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { Cart } from "../pages/user/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -38,8 +38,8 @@ export const router = createBrowserRouter([
         element: <ProductDetails />,
       },
       {
-        path: "dashboard",
-        element: <Dashboard />,
+        path: "cart",
+        element: <Cart />,
       },
       //   ],
       // },

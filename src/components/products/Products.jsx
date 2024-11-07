@@ -11,8 +11,10 @@ export const Products = () => {
 
   return (
     <section className="flex flex-col justify-center items-center gap-4 bg-zinc-200 pt-9">
-      <ProductSearch />
-      <SortProducts  />
+      <div className="flex gap-2">
+        <ProductSearch />
+        <SortProducts />
+      </div>
       <section className="flex flex-wrap justify-center items-center">
         {productsData && productsData.length > 0 ? (
           productsData.map((product) => {

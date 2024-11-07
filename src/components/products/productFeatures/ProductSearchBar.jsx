@@ -17,7 +17,7 @@ export const ProductSearch = () => {
         value={search}
         placeholder="Search for a product"
         onChange={handleSearch}
-        className="border-2 border-green-700 p-2 min-w-96"
+        className="border-2 border-red-950 outline-red-900 p-2 min-w-96"
       />
     </section>
   );

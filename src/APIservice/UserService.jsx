@@ -1,5 +1,4 @@
 import axios from "axios";
-import { stringify } from "postcss";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -25,7 +24,7 @@ export const UserRegister = async (userName, password, email) => {
   }
 };
 
-export const UserLogin = async (email, password) => {
+export const UserSignIn = async (email, password) => {
   try {
     const loginInfo = {
       Email: email,
@@ -49,3 +48,10 @@ export const UserLogin = async (email, password) => {
     }
   }
 };
+
+export const GetUserById = async (id) => {
+  const url = `${baseUrl}/api/v1/users`;
+  const response = await axios.get(`${url}/${id}`);
+  console.log(response)
+  return response.data;
+}
