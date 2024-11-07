@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Title } from "../../Title";
 import { Image } from "../../Image";
 import { Price } from "./Price";
+
 export const SingleProduct = ({ products }) => {
   const { productName, image, price } = products;
   const navigate = useNavigate();

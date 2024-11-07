@@ -16,6 +16,7 @@ export const ProductDetails = () => {
   const fetchProduct = async () => {
     const response = await getSingleProduct(id);
     setProduct(response.data);
+    // console.log(response.data)
   };
 
   useEffect(() => {

@@ -35,10 +35,9 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-    useEffect(() => {
-      fetchProducts();
-    }, [searchTerm, pageNumber, pageSize, sortBy, sortOrder]);
-
+  useEffect(() => {
+    fetchProducts();
+  }, [searchTerm, pageNumber, pageSize, sortBy, sortOrder]);
   return (
     <ProductContext.Provider
       value={{

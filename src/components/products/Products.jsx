@@ -1,19 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { ProductContext } from "../../context/ProductContext";
 import { SingleProduct } from "./productDetails/SingleProduct";
-import { ProductSearch } from "./productFeatures/ProductSearchBar";
 import { PaginationComponent } from "./productFeatures/Pagination";
-import { SortProducts } from "./productFeatures/SortProducts";
+import { SearchBar } from "../../utilities/SearchBar";
+import { SortFeature } from "../../utilities/SortFeature";
+
 
 export const Products = () => {
   const { productsData } = useContext(ProductContext);
+  console.log("productsData", productsData);
 
   return (
     <section className="flex flex-col justify-center items-center gap-4 bg-zinc-200 pt-9">
       <div className="flex gap-2">
-        <ProductSearch />
-        <SortProducts />
+        <SearchBar />
+        <SortFeature />
       </div>
       <section className="flex flex-wrap justify-center items-center">
         {productsData && productsData.length > 0 ? (

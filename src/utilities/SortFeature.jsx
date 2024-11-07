@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-import { ProductContext } from '../../../context/ProductContext';
+import { ProductContext } from '../context/ProductContext';
 
-export const SortProducts = () => {
+export const SortFeature = () => {
   const { sortBy, setSortBy, sortOrder, setSortOrder } = useContext(ProductContext);
 
 const handleSortByChange = (event) => {

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { ProductContext } from "../../../context/ProductContext";
+import { ProductContext } from "../context/ProductContext";
 
-export const ProductSearch = () => {
+export const SearchBar = () => {
   const [search, setSearch] = useState("");
   const { setSearchTerm } = useContext(ProductContext);
   

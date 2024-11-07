@@ -10,6 +10,7 @@ import { SignIn } from "../pages/user/SignIn";
 import { UserRegisterForm } from "../pages/user/UserRegister";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { Cart } from "../pages/user/Cart";
+import { CategoryProducts } from "../components/products/CategoryProducts";
 
 export const router = createBrowserRouter([
   {
@@ -22,25 +23,29 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "list-categories",
+        path: "categories",
         element: <Categories />,
       },
       {
-      path: "/",
-      element: <ProtectedRoute />,
-      children: [
+        path: "category-products/:categoryId",
+        element: <CategoryProducts />,
+      },     
       {
-        path: "list-products",
-        element: <Products />,
-      },
-      {
-        path: "product-details/:id",
-        element: <ProductDetails />,
-      },
-      {
-        path: "cart",
-        element: <Cart />,
-      },
+        path: "/",
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "products",
+            element: <Products />,
+          },
+          {
+            path: "product-details/:id",
+            element: <ProductDetails />,
+          },
+          {
+            path: "cart",
+            element: <Cart />,
+          },
         ],
       },
       {
@@ -50,7 +55,7 @@ export const router = createBrowserRouter([
       {
         path: "signin",
         element: <SignIn />,
-      }
+      },
     ],
   },
 ]);

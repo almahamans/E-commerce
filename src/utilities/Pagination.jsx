@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Pagination from "@mui/material/Pagination";
 
-import { ProductContext } from "../../../context/ProductContext";
+import { ProductContext } from "../context/ProductContext";
 
 export const PaginationComponent = () => {
   const {

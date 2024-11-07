@@ -27,11 +27,23 @@ export const getAllProducts = async (
 
 export const getSingleProduct = async (id) => {
   try {
-    const response = await axios(`${baseUrl}/${id}`);
+    const response = await axios(`${endPoint}/${id}`);
+    // console.log("service", response)
     return response.data;
   } catch (error) {
     console.error("Error fetching products:", error);
     return []; 
+  }
+};
+
+export const GetProductsByCategoryId = async (id) => {
+  try {
+    const response = await axios(`${baseUrl}/api/categories/products/${id}`);
+    console.log("serviceeee", response.data.value.data)
+    return response.data.value;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
   }
 };
 

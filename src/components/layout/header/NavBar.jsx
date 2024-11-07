@@ -13,10 +13,10 @@ export const NavBar = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/list-categories">List Categories</Link>
+          <Link to="/categories">List Categories</Link>
         </li>
         <li>
-          <Link to="/list-products">List Products</Link>
+          <Link to="/products">List Products</Link>
         </li>
         <li>
           <Link to="/cart">Cart</Link>
