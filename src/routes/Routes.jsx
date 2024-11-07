@@ -22,13 +22,13 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/list-categories",
+        path: "list-categories",
         element: <Categories />,
       },
-      // {
-      //   path: "/",
-      //   element: <ProtectedRoute />,
-      //   children: [
+      {
+      path: "/",
+      element: <ProtectedRoute />,
+      children: [
       {
         path: "list-products",
         element: <Products />,
@@ -41,8 +41,8 @@ export const router = createBrowserRouter([
         path: "cart",
         element: <Cart />,
       },
-      //   ],
-      // },
+        ],
+      },
       {
         path: "register",
         element: <UserRegisterForm />,
