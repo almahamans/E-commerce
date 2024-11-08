@@ -5,77 +5,78 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
 
     const SaveCartToLocalStorage = (cartItems) => {
-        localStorage.setItem("cart", JSON.stringify(cartItems));
+        localStorage.setItem("productsCart", JSON.stringify(cartItems));
     };
+
     const GetCartFromLocalStorage = () => {
-        const cartData = localStorage.getItem("cart");
+      const cartData = localStorage.getItem("productsCart");
+      try {
         return cartData ? JSON.parse(cartData) : [];
-    };
+      } catch (error) {
+        console.error("Error parsing cart data:", error);
+        return [];
+      }
+    }
 
-    const [userCart, setCart] = useState(GetCartFromLocalStorage);
+    const [userCart, setCart] = useState(() => {
+      const initialCart = GetCartFromLocalStorage();
+      return Array.isArray(initialCart) ? initialCart : [];
+    });
 
-    const AddToCart = (product) => {
-      setCart((products) => {
-        const findProduct= products.findIndex(item => item.productId === product.productId)
-        
-        let updatedCart;
+const AddToCart = (product) => {
+  setCart((productsCart) => {
+    const findProductIndex = productsCart.findIndex((item) => item.productId === product.productId);
 
-        if (findProduct >= 0) {
-          updatedCart = [...products];
-          updatedCart[findProduct].quantity += 1;
-        } else {
-          updatedCart = [...products, { ...product, quantity: 1 }];
-        }
+    let updatedCart;
+    if (findProductIndex >= 0) {
+      updatedCart = [...productsCart];
+      updatedCart[findProductIndex] = {
+        ...updatedCart[findProductIndex],
+        quantity: updatedCart[findProductIndex].quantity + 1,
+      };
+    } else {
+      updatedCart = [...productsCart, { ...product, quantity: 1 }];
+    }
+    SaveCartToLocalStorage(updatedCart);
+    console.log("updatedCart in adding", updatedCart);
+    return updatedCart;
+  });
+};
 
-        SaveCartToLocalStorage(updatedCart); 
-        console.log("updatedCart in adding", updatedCart);
-        return updatedCart;
-      })
-    };
+  const RemoveFromCart = (productId) => {
+  setCart((productsCart) => {
+    const productIndex = productsCart.findIndex((item) => item.productId === productId);
+    if (productIndex >= 0) {
+      const updatedCart = [...productsCart];
 
-//     const RemoveFromCart = (productId) => {
-//         setCart((cart) => {
-//             const updatedCart = cart.filter(item => item.productId !== productId)
-//             SaveCartToLocalStorage(updatedCart); 
-//             console.log("updatedCart in remove", updatedCart);
-//             return updatedCart;
-//         })
-//     }
-// const RemoveFromCart = (productId) => {
-//   setCart((cart) => {
-//     // Find the index of the product in the cart
-//     const productIndex = cart.findIndex((item) => item.productId === productId);
+      if (updatedCart[productIndex].quantity > 1) {
+        updatedCart[productIndex] = {
+          ...updatedCart[productIndex],
+          quantity: updatedCart[productIndex].quantity - 1,
+        };
+      } else {
+        updatedCart.splice(productIndex, 1);
+      }
+      SaveCartToLocalStorage(updatedCart);
+      console.log("updatedCart in remove", updatedCart);
+      return updatedCart;
+    }
+    return productsCart;
+  })
+  }
 
-//     // If product is found
-//     if (productIndex >= 0) {
-//       const updatedCart = [...cart]; // Create a copy of the cart
-
-//       // Check if quantity is more than 1
-//       if (updatedCart[productIndex].quantity > 1) {
-//         // Decrease the quantity by 1
-//         updatedCart[productIndex].quantity -= 1;
-//       } else {
-//         // Remove item from the cart if quantity is 1
-//         updatedCart.splice(productIndex, 1);
-//       }
-
-//       // Save updated cart to localStorage
-//       SaveCartToLocalStorage(updatedCart);
-
-//       console.log("updatedCart in remove", updatedCart);
-//       return updatedCart; // Update the state with the modified cart
-//     }
-
-//     return cart; // Return cart unchanged if product was not found
-//   });
-// };
-    const ClearCart = () => {
-        setCart([]);
-        localStorage.removeItem("cart");
-    };
+  const ClearCart = () => {
+      setCart([]);
+      localStorage.removeItem("productsCart");
+  };
 
   useEffect(() => {
-    SaveCartToLocalStorage(userCart);
+    if (!Array.isArray(userCart)) {
+      console.error("userCart is not an array:", userCart);
+      setCart([]);
+    } else {
+      SaveCartToLocalStorage(userCart);
+    }
   }, [userCart]);
 
   return (
