@@ -9,10 +9,14 @@ export const TokenDecode = (token) => {
   try {
     const decoded = jwtDecode(token);
     console.log("token:", decoded);
-    return decoded;
+    return {
+      id: decoded.userId,
+      username: decoded.userName,
+      email: decoded.email,
+      role: decoded.role
+    };
   } catch (error) {
     console.error("invalid token:", error);
     return null;
   }
 }
-

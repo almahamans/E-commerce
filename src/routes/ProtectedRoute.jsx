@@ -1,9 +1,13 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import { SignIn } from "../pages/user/SignIn";
-import { Layout } from "../components/layout/Layout";
+import { Navigate, Outlet } from "react-router-dom";
 
-export const ProtectedRoute = () => {
-  const isSignIn = localStorage.getItem("isSignIn");
-  return <div>{isSignIn ? <Outlet /> : <SignIn />}</div>;
+export const ProtectedRoute = ({ requiredRole }) => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
+  if (!token || role !== requiredRole) {
+    return <Navigate to="/signin" replace />
+  }
+    return <Outlet />
+  
 };

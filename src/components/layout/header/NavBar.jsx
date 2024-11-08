@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom'
 export const NavBar = () => {
   
   const handleSignOut = () => {
+    localStorage.removeItem("token");
     localStorage.removeItem("isSignIn");
   }
+  
   return (
     <section>
       <ul className="flex justify-around gap-9 text-white font-medium">

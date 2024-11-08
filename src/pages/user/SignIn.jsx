@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import { UserSignIn } from '../../APIservice/UserService';
+import { TokenDecode } from '../../utilities/TokenDecode';
 
 export const SignIn = () => {
     const [userData, setUserData] = useState({
@@ -31,13 +32,22 @@ const handleSubmit = async (event) => {
     const userSignInfo = await UserSignIn(userData.email, userData.password);
 
     if (userSignInfo.token && userSignInfo.token !== "Email/Password is incorrect"){
+      const decodedUser = TokenDecode(userSignInfo.token);
       localStorage.setItem("token", userSignInfo.token);
       localStorage.setItem("isSignIn", true);
-      navigate("/");
+      localStorage.setItem("role", decodedUser.role); 
+
+      const getRole = localStorage.getItem("role"); 
+      if(getRole === "Customer"){
+        navigate("/customer-dashboard");
+      }else if (getRole === "Admin"){
+        navigate("/admin/dashboard")
+      }else{
+        console.log("error in navigatition")
+      }
     } else {
       console.error("Email/Password is incorrect");
       setErrors("Email/Password is incorrect");
-      return;
     }
   } catch (err) {
     console.error("signIn failed:", err); 

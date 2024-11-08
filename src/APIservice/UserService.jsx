@@ -55,32 +55,3 @@ export const GetUserById = async (id) => {
   console.log(response)
   return response.data;
 }
-
-export const GetUserInfo = async (token) => {
-  try {
-    const response = await axios(`${baseUrl}/api/v1/users`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (response.ok) {
-      const userData = response;
-      console.log('userData', userData);
-
-      const loggedInUser = userData.data.items.find((item) => item.userId === userData.data.items[0].userId);
-
-      return {
-        id: loggedInUser.userId,
-        username: loggedInUser.userName,
-        email: loggedInUser.email,
-        role: loggedInUser.role,
-      };
-    } else {
-      console.error('Error fetching user info:', response.status);
-      throw new Error(errorText || 'Failed to fetch user info');
-    }
-  } catch (error) {
-    console.error('Error fetching user info:', error);
-    throw error;
-  }
-}

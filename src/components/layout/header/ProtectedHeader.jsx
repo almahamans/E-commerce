@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { ProtectedNavBar } from './ProtectedNavBar';
 
 export const ProtectedHeader = () => {

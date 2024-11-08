@@ -11,6 +11,8 @@ import { UserRegisterForm } from "../pages/user/UserRegister";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { Cart } from "../components/cart/Cart";
 import { CategoryProducts } from "../components/products/CategoryProducts";
+import { AdminDashboard } from "../components/adminSide/AdminDashboard";
+import { CustomerDashboard } from "../components/customerSide/CustomerDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -29,11 +31,15 @@ export const router = createBrowserRouter([
       {
         path: "category-products/:categoryId",
         element: <CategoryProducts />,
-      },     
+      },
       {
         path: "/",
-        element: <ProtectedRoute />,
+        element: <ProtectedRoute requiredRole="Customer" />,
         children: [
+          {
+            path: "customer-dashboard",
+            element: <CustomerDashboard />,
+          },
           {
             path: "products",
             element: <Products />,
@@ -45,6 +51,16 @@ export const router = createBrowserRouter([
           {
             path: "cart",
             element: <Cart />,
+          },
+        ],
+      },
+      {
+        path: "admin",
+        element: <ProtectedRoute requiredRole="Admin" />,
+        children: [
+          {
+            path: "dashboard",
+            element: <AdminDashboard />,
           },
         ],
       },
