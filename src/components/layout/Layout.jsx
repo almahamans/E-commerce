@@ -2,12 +2,12 @@ import React from 'react'
 
 import { Main } from './Main'
 import { Footer } from './Footer'
-import { ProtectedHeader } from './header/ProtectedHeader'
+import { ProtectedNavBar } from './header/ProtectedNavBar'
 
 export const Layout = () => {
     return (
         <main>
-            <ProtectedHeader />
+            <ProtectedNavBar />
             <Main />
             <Footer />
         </main>
