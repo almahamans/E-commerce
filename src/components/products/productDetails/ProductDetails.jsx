@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Title } from "../../Title";
 import { Image } from "../../Image";
@@ -8,10 +8,12 @@ import { Description } from "./Description";
 import { Quantity } from "./Quantity";
 import { useParams } from "react-router-dom";
 import { getSingleProduct } from "../../../APIservice/ServiceProduct";
+import { CartContext } from "../../../context/CartContext";
 
 export const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const { AddToCart } = useContext(CartContext);
 
   const fetchProduct = async () => {
     const response = await getSingleProduct(id);
@@ -36,7 +38,6 @@ export const ProductDetails = () => {
       <div>
         <Title Name={product.productName} />
         <div className="flex flex-nowrap gap-2">
-          <span>Price:</span>
           <Price Price={product.price} />
         </div>
         <CreatedAt CreateAt={product.createAt} />
@@ -44,9 +45,8 @@ export const ProductDetails = () => {
           <span>Description:</span>
           <Description Description={product.description} />
         </div>
-
-        <Quantity Quantity={product.quantity} />
       </div>
+      <button onClick={() => AddToCart(product)}>Add to cart</button>
     </section>
   );
 };

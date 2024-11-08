@@ -9,7 +9,7 @@ import { Categories } from "../components/categories/Categories";
 import { SignIn } from "../pages/user/SignIn";
 import { UserRegisterForm } from "../pages/user/UserRegister";
 import { ProtectedRoute } from "./ProtectedRoute";
-import { Cart } from "../pages/user/Cart";
+import { Cart } from "../components/cart/Cart";
 import { CategoryProducts } from "../components/products/CategoryProducts";
 
 export const router = createBrowserRouter([
