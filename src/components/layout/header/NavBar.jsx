@@ -7,15 +7,12 @@ export const NavBar = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("isSignIn");
   }
-  
+
   return (
     <section>
       <ul className="flex justify-around gap-9 text-white font-medium">
         <li>
-          <Link to="/categories">List Categories</Link>
-        </li>
-        <li>
-          <Link to="/products">List Products</Link>
+          <Link to="/customer-dashboard">DashBoard</Link>
         </li>
         <li>
           <Link to="/cart">Cart</Link>

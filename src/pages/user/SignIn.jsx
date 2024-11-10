@@ -20,14 +20,15 @@ export const SignIn = () => {
             [e.target.name]: e.target.value,
         }
         })
-    };
+    }
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  if(!userData.email || !userData.password){
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if(!userData.email || !userData.password){
     setErrors("Email/Password is incorrect");
     return;
   }
+
   try {
     const userSignInfo = await UserSignIn(userData.email, userData.password);
 

@@ -45,6 +45,20 @@ export const GetProductsByCategoryId = async (id) => {
     console.error("Error fetching products:", error);
     return [];
   }
-};
+}
 
-export const deleteProductById = () => {};
+export const addProductService = async (product) => {
+  console.log("inside service", product)
+  try {
+    const response = await axios.post(`${endPoint}`, product, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    console.log("add product response", response);
+    return response.data;
+  } catch (error) {
+    console.error("Error in adding product service:", error);
+    throw error;
+  }
+}

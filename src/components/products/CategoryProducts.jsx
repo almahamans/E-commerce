@@ -20,9 +20,6 @@ export const CategoryProducts = () => {
     fetchProducts();
   }, [categoryId]);
 
-    if (!productdata) {
-      return <h1>loading...</h1>;
-    }
     return (
       <section className="flex flex-wrap justify-center items-center">
         {productdata && productdata.length > 0 ? (
