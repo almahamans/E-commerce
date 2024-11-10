@@ -5,7 +5,6 @@ import { Image } from "../../Image";
 import { Price } from "./Price";
 import { CreatedAt } from "./CreatedAt";
 import { Description } from "./Description";
-import { Quantity } from "./Quantity";
 import { useParams } from "react-router-dom";
 import { getSingleProduct } from "../../../APIservice/ServiceProduct";
 import { CartContext } from "../../../context/CartContext";

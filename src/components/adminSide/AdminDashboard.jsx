@@ -8,7 +8,7 @@ export const AdminDashboard = () => {
           Admin Dashboard
         </h1>
 
-        <section className="grid grid-rows-4 grid-cols-3 gap-5 mt-9">
+        <section className="grid grid-rows-6 grid-cols-3 gap-5 mt-9">
           <p className="col-span-3 text-center font-bold">
             Category utilities:
           </p>
@@ -16,20 +16,27 @@ export const AdminDashboard = () => {
             <Link to="/admin/add-category">Add Category</Link> {/*finished*/}
           </button>
           <button className="rounded border-2 p-2">
-            <Link to="/admin/add-category">Update Category</Link>
+            <Link to="/admin/update-category">Update Category</Link>
           </button>
           <button className="rounded border-2 p-2">
-            <Link to="/admin/add-category">Delete Category</Link>
+            <Link to="/admin/delete-category">Delete Category</Link>
           </button>
           <p className="col-span-3 text-center font-bold">Product utilities:</p>
+          <button className="rounded border-2 p-2">
+            <Link to="/admin/display-products">Display Products</Link>
+          </button>
           <button className="rounded border-2 p-2">
             <Link to="/admin/add-product">Add Product</Link>
           </button>
           <button className="rounded border-2 p-2">
-            <Link to="/admin/add-category">Update Product</Link>
+            <Link to="/admin/update-category">Update Product</Link>
           </button>
           <button className="rounded border-2 p-2">
-            <Link to="/admin/add-category">Delete Product</Link>
+            <Link to="/admin/delete-category">Delete Product</Link>
+          </button>
+          <p className="col-span-3 text-center font-bold">Users utilities:</p>
+          <button className="rounded border-2 p-2">
+            <Link to="/admin/get-users">Display Users</Link>
           </button>
         </section>
       </div>

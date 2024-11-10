@@ -39,7 +39,7 @@ export const getSingleProduct = async (id) => {
 export const GetProductsByCategoryId = async (id) => {
   try {
     const response = await axios(`${baseUrl}/api/categories/products/${id}`);
-    console.log("serviceeee", response.data.value.data)
+    console.log("ProductsByCategoryId service", response.data.value.data);
     return response.data.value;
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -48,7 +48,7 @@ export const GetProductsByCategoryId = async (id) => {
 }
 
 export const addProductService = async (product) => {
-  console.log("inside service", product)
+  console.log("add product service", product)
   try {
     const response = await axios.post(`${endPoint}`, product, {
       headers: {
@@ -60,5 +60,31 @@ export const addProductService = async (product) => {
   } catch (error) {
     console.error("Error in adding product service:", error);
     throw error;
+  }
+}
+
+export const deleteProductService = async (id) => {
+  try {
+    const response = await axios.delete(`${endPoint}/${id}`);
+    console.log("delete serviceee", response.data);
+    return response.data.value;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
+}
+
+export const updateProductService = async (id, product) =>{
+  try {
+    const response = await axios.put(`${endPoint}/${id}`, product, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    console.log("delete serviceee", response.data);
+    return response.data.value;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
   }
 }

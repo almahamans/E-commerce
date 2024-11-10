@@ -12,13 +12,21 @@ export const NavBar = () => {
     <section>
       <ul className="flex justify-around gap-9 text-white font-medium">
         <li>
-          <Link to="/customer-dashboard">DashBoard</Link>
+          <Link to="/categories">List Categories</Link>
+        </li>
+        <li>
+          <Link to="/products">Products</Link>
+        </li>
+        <li>
+          <Link to="/customer-profile">Profile</Link>
         </li>
         <li>
           <Link to="/cart">Cart</Link>
         </li>
         <li>
-          <Link to="/" onClick={handleSignOut}>Sign Out</Link>
+          <Link to="/" onClick={handleSignOut}>
+            Sign Out
+          </Link>
         </li>
       </ul>
     </section>

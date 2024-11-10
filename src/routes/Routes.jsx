@@ -14,7 +14,9 @@ import { CategoryProducts } from "../components/products/CategoryProducts";
 import { AdminDashboard } from "../components/adminSide/AdminDashboard";
 import { CustomerDashboard } from "../components/customerSide/CustomerDashboard";
 import { AddCategory } from "../components/adminSide/adminFeatures/AddCategory";
-import { AddProduct } from "../components/adminSide/adminFeatures/AddProduct";
+import { AddProduct } from "../components/adminSide/adminFeatures/products/AddProduct";
+import { DisplayProducts } from "../components/adminSide/adminFeatures/products/DisplayProducts";
+import { ProductAdjustments } from "../components/adminSide/adminFeatures/products/ProductAdjusments";
 
 export const router = createBrowserRouter([
   {
@@ -27,27 +29,27 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "categories",
-        element: <Categories />,
-      },
-      {
-        path: "category-products/:categoryId",
-        element: <CategoryProducts />,
-      },
-      {
-        path: "products",
-        element: <Products />,
-      },
-      {
-        path: "product-details/:id",
-        element: <ProductDetails />,
-      },
-      {
         path: "/",
         element: <ProtectedRoute requiredRole="Customer" />,
         children: [
           {
-            path: "customer-dashboard",
+            path: "categories",
+            element: <Categories />,
+          },
+          {
+            path: "category-products/:categoryId",
+            element: <CategoryProducts />,
+          },
+          {
+            path: "products",
+            element: <Products />,
+          },
+          {
+            path: "product-details/:id",
+            element: <ProductDetails />,
+          },
+          {
+            path: "customer-profile",
             element: <CustomerDashboard />,
           },
           {
@@ -69,9 +71,25 @@ export const router = createBrowserRouter([
             element: <AddCategory />,
           },
           {
+            path: "display-products",
+            element: <DisplayProducts />,
+          },
+          {
+            path: "product-adjusments/:id",
+            element: <ProductAdjustments />,
+          },
+          {
             path: "add-product",
             element: <AddProduct />,
           },
+          // {
+          //   path: "update-product",
+          //   element: <AddProduct />,
+          // },
+          // {
+          //   path: "delete-product",
+          //   element: <AddProduct />,
+          // },
         ],
       },
       {

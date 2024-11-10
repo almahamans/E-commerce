@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 
-import { addProductService } from '../../../APIservice/ServiceProduct'
-import { CategoryContext } from '../../../context/CategoryContext';
+import { addProductService } from '../../../../APIservice/ServiceProduct'
+import { CategoryContext } from '../../../../context/CategoryContext';
 
 export const AddProduct = () => {
   const { categoriesData } = useContext(CategoryContext)
@@ -27,12 +27,12 @@ export const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate input
     if (
       !newProduct.ProductName ||
       !newProduct.Price ||
-      !newProduct.categoryId
-    ) {
+      !newProduct.categoryId ||
+      !newProduct.Description
+    ){
       setMessage("Please fill out all required fields.");
       return;
     }
@@ -78,7 +78,7 @@ export const AddProduct = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="Description" className="form-label">
-            Description:
+           Product Description:
           </label>
           <textarea
             name="Description"
@@ -90,7 +90,7 @@ export const AddProduct = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="Price" className="form-label">
-            Price:
+           Product Price:
           </label>
           <input
             type="number"
@@ -104,7 +104,7 @@ export const AddProduct = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="categoryId" className="form-label">
-            Category:
+           Product Category:
           </label>
           <select
             name="categoryId"
@@ -136,7 +136,7 @@ export const AddProduct = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary w-100">
-          Add Product
+          Add The Product
         </button>
       </form>
     </div>

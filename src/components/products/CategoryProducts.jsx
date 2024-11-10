@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
-import { ProductContext } from '../../context/ProductContext';
 import { GetProductsByCategoryId } from '../../APIservice/ServiceProduct';
 import { SingleProduct } from './productDetails/SingleProduct';
+import { PaginationComponent } from '../../utilities/Pagination';
 
 export const CategoryProducts = () => {
   const { categoryId } = useParams();
@@ -21,14 +21,19 @@ export const CategoryProducts = () => {
   }, [categoryId]);
 
     return (
-      <section className="flex flex-wrap justify-center items-center">
-        {productdata && productdata.length > 0 ? (
-          productdata.map((product) => {
-            return <SingleProduct products={product} key={product.productId} />;
-          })
-        ) : (
-          <h1 className="font-bold">No products found</h1>
-        )}
-      </section>
+      <>
+        <section className="flex flex-wrap justify-center items-center">
+          {productdata && productdata.length > 0 ? (
+            productdata.map((product) => {
+              return (
+                <SingleProduct products={product} key={product.productId} />
+              );
+            })
+          ) : (
+            <h1 className="font-bold">No products found</h1>
+          )}
+        </section>
+        <PaginationComponent />
+      </>
     );
 }

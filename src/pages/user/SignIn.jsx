@@ -40,7 +40,7 @@ export const SignIn = () => {
 
       const getRole = localStorage.getItem("role"); 
       if(getRole === "Customer"){
-        navigate("/customer-dashboard");
+        navigate("/customer-profile");
       }else if (getRole === "Admin"){
         navigate("/admin/dashboard")
       }else{
