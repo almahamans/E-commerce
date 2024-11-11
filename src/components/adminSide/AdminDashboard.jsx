@@ -36,7 +36,7 @@ export const AdminDashboard = () => {
           </button>
           <p className="col-span-3 text-center font-bold">Users utilities:</p>
           <button className="rounded border-2 p-2">
-            <Link to="/admin/get-users">Display Users</Link>
+            <Link to="/admin/display-users">Display Users</Link>
           </button>
         </section>
       </div>

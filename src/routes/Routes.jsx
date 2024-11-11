@@ -13,10 +13,11 @@ import { Cart } from "../components/cart/Cart";
 import { CategoryProducts } from "../components/products/CategoryProducts";
 import { AdminDashboard } from "../components/adminSide/AdminDashboard";
 import { CustomerDashboard } from "../components/customerSide/CustomerDashboard";
-import { AddCategory } from "../components/adminSide/adminFeatures/AddCategory";
+import { AddCategory } from "../components/adminSide/adminFeatures/categories/AddCategory";
 import { AddProduct } from "../components/adminSide/adminFeatures/products/AddProduct";
 import { DisplayProducts } from "../components/adminSide/adminFeatures/products/DisplayProducts";
 import { ProductAdjustments } from "../components/adminSide/adminFeatures/products/ProductAdjusments";
+import { UsersControll } from "../components/adminSide/adminFeatures/users/UsersControll";
 
 export const router = createBrowserRouter([
   {
@@ -82,14 +83,10 @@ export const router = createBrowserRouter([
             path: "add-product",
             element: <AddProduct />,
           },
-          // {
-          //   path: "update-product",
-          //   element: <AddProduct />,
-          // },
-          // {
-          //   path: "delete-product",
-          //   element: <AddProduct />,
-          // },
+          {
+            path: "display-users",
+            element: <UsersControll />,
+          },
         ],
       },
       {

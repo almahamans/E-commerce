@@ -13,7 +13,7 @@ export const CategoryProducts = () => {
   const fetchProducts = async () => {
     const response = await GetProductsByCategoryId(categoryId);
     setproductdata(response.data[0].products);
-    console.log("componentttt",response.data)
+    // console.log("componentttt",response.data)
   };
 
   useEffect(() => {

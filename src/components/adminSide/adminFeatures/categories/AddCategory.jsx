@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Box, Button, TextField } from "@mui/material";
 
-import { addCategoryService } from '../../../APIservice/CategoryService';
+import { addCategoryService } from '../../../../APIservice/CategoryService';
 
 export const AddCategory = () => { 
   const [categoryName, setCategoryName] = useState("");

@@ -49,9 +49,23 @@ export const UserSignIn = async (email, password) => {
   }
 };
 
-export const GetUserById = async (id) => {
+export const getUserByIdService = async (id) => {
   const url = `${baseUrl}/api/v1/users`;
   const response = await axios.get(`${url}/${id}`);
   console.log(response)
+  return response.data;
+}
+
+export const getAllUsersService = async () => {
+  const url = `${baseUrl}/api/v1/users`;
+  const response = await axios.get(url);
+  console.log("inside service",response.data.data.items)
+  return response.data;
+}
+
+export const deleteUserService = (id) => {
+  const url = `${baseUrl}/api/v1/users/${id}`;
+  const response = axios.delete(url);
+  console.log(response.data)
   return response.data;
 }
