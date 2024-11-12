@@ -12,8 +12,8 @@ export const NavBar = () => {
   }
 
   return (
-    <section>
-      <ul className="flex justify-around gap-9 text-white font-medium">
+    <section className="">
+      <ul className="flex justify-around gap-9 text-white font-medium p-5 bg-gray-700">
         <li>
           <Link to="/categories">List Categories</Link>
         </li>
@@ -21,7 +21,9 @@ export const NavBar = () => {
           <Link to="/products">Products</Link>
         </li>
         <li>
-          <Link to="/customer-profile">Profile</Link>
+          <Link to="/customer-profile">
+            Profile
+          </Link>
         </li>
         <li>
           <Link to="/cart">Cart</Link>

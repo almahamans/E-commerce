@@ -12,7 +12,7 @@ export const PaginationComponent = () => {
 
   const handleChange = (event, value) => {
     setPageNumber(value);
-    console.log("value", value);
+    console.log("page number", value);
   };
 
   return (

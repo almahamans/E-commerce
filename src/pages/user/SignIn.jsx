@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { UserSignIn } from '../../APIservice/UserService';
 import { TokenDecode } from '../../utilities/TokenDecode';
+import { jwtDecode } from 'jwt-decode';
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -36,6 +37,10 @@ export const SignIn = () => {
       localStorage.setItem("token", userSignInfo.token);
       localStorage.setItem("isSignIn", true);
       localStorage.setItem("role", decodedUser.role); 
+
+      const decodedUserId = jwtDecode(userSignInfo.token);
+      console.log("signinpagee:", decodedUserId.nameid);
+      localStorage.setItem("userId", decodedUserId.nameid);
 
       const getRole = localStorage.getItem("role"); 
       if(getRole === "Customer"){

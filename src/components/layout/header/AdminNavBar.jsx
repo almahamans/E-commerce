@@ -10,11 +10,9 @@ export const AdminNavBar = () => {
 
   return (
     <section>
-      <ul className="flex justify-around gap-9 text-white font-medium">
+      <ul className="flex justify-around gap-9 text-white font-medium  p-5 bg-gray-700">
         <li>
-          <Link to="/admin/dashboard">
-              DashBoard
-          </Link>
+          <Link to="/admin/dashboard">DashBoard</Link>
         </li>
         <li>
           <Link to="/" onClick={handleSignOut}>
@@ -23,5 +21,5 @@ export const AdminNavBar = () => {
         </li>
       </ul>
     </section>
-    );
+  );
 }

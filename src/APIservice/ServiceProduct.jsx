@@ -2,6 +2,7 @@ import axios from "axios";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
 const endPoint = `${baseUrl}/api/products`;
+const token = localStorage.getItem("token");
 
 export const getAllProducts = async (
   searchTerm = "",
@@ -20,14 +21,22 @@ export const getAllProducts = async (
   params.append("sortOrder", sortOrder);
 
   const url = `${endPoint}?${params.toString()}`;
-  const response = await axios(url);
+  const response = await axios(url, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+  });
   // console.log("urlllllll", url);
   return response;
 };
 
 export const getSingleProduct = async (id) => {
   try {
-    const response = await axios(`${endPoint}/${id}`);
+    const response = await axios(`${endPoint}/${id}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    })
     // console.log("service", response)
     return response.data;
   } catch (error) {
@@ -38,7 +47,11 @@ export const getSingleProduct = async (id) => {
 
 export const GetProductsByCategoryId = async (id) => {
   try {
-    const response = await axios(`${baseUrl}/api/categories/products/${id}`);
+    const response = await axios(`${baseUrl}/api/categories/products/${id}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    })
     console.log("ProductsByCategoryId service", response.data.value.data);
     return response.data.value;
   } catch (error) {
@@ -53,8 +66,9 @@ export const addProductService = async (product) => {
     const response = await axios.post(`${endPoint}`, product, {
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
       },
-    })
+    });
     console.log("add product response", response);
     return response.data;
   } catch (error) {
@@ -65,7 +79,11 @@ export const addProductService = async (product) => {
 
 export const deleteProductService = async (id) => {
   try {
-    const response = await axios.delete(`${endPoint}/${id}`);
+    const response = await axios.delete(`${endPoint}/${id}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    })
     console.log("delete serviceee", response.data);
     return response.data.value;
   } catch (error) {
@@ -79,8 +97,9 @@ export const updateProductService = async (id, product) =>{
     const response = await axios.put(`${endPoint}/${id}`, product, {
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
       },
-    })
+    });
     console.log("delete serviceee", response.data);
     return response.data.value;
   } catch (error) {

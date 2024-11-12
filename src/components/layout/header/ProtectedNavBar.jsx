@@ -16,7 +16,10 @@ export const ProtectedNavBar = () => {
       <div className="flex justify-around gap-9 text-white font-medium">
         <Link to="/">Home</Link>
         {signedIn && role === "Admin" && <AdminNavBar />}
-        {signedIn && role === "Customer" && <NavBar />}
+        {signedIn && role === "Customer" && 
+          // <Link to="/customer-profile">Profile</Link>
+          <NavBar />
+        }
         {!signedIn && (
           <ul className="flex justify-around gap-9">
             <li>

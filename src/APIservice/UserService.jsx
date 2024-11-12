@@ -50,14 +50,14 @@ export const UserSignIn = async (email, password) => {
 };
 
 export const getUserByIdService = async (id) => {
-  const url = `${baseUrl}/api/v1/users`;
-  const response = await axios.get(`${url}/${id}`, {
+  const url = `${baseUrl}/api/v1/users/${id}`;
+  const response = await axios.get(`${url}`, {
     headers: {
       "Authorization": `Bearer ${token}`,
     },
   });
-  console.log(response)
-  return response.data;
+  console.log(response.data.data);
+  return response.data.data;
 }
 
 export const getAllUsersService = async () => {
