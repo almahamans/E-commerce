@@ -34,7 +34,7 @@ export const getSingleProduct = async (id) => {
     console.error("Error fetching products:", error);
     return []; 
   }
-};
+}
 
 export const GetProductsByCategoryId = async (id) => {
   try {

@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../../../context/CartContext'
 
 export const NavBar = () => {
-  
+  const { ClearCart } = useContext(CartContext);
+
   const handleSignOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("isSignIn");
+    ClearCart();
   }
 
   return (
@@ -24,7 +27,7 @@ export const NavBar = () => {
           <Link to="/cart">Cart</Link>
         </li>
         <li>
-          <Link to="/" onClick={handleSignOut}>
+          <Link to="/" onClick={handleSignOut} replace>
             Sign Out
           </Link>
         </li>

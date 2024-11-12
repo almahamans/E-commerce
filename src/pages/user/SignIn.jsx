@@ -5,22 +5,21 @@ import { UserSignIn } from '../../APIservice/UserService';
 import { TokenDecode } from '../../utilities/TokenDecode';
 
 export const SignIn = () => {
-    const [userData, setUserData] = useState({
-        email: "",
-        password: ""
-    })
-    const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+      email: "",
+      password: ""
+  })
+  const [errors, setErrors] = useState({});
 
-    const navigate = useNavigate();
-
-    const handleInputChange = (e) => {
-        setUserData((prevState) => {
-        return {
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }
-        })
-    }
+  const handleInputChange = (e) => {
+      setUserData((prevState) => {
+      return {
+          ...prevState,
+          [e.target.name]: e.target.value,
+      }
+      })
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();

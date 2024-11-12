@@ -26,44 +26,31 @@ export const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  try {
+    const response = await addProductService(newProduct);
 
-    if (
-      !newProduct.ProductName ||
-      !newProduct.Price ||
-      !newProduct.categoryId ||
-      !newProduct.Description
-    ){
-      setMessage("Please fill out all required fields.");
-      return;
+    if (response.success) {
+      setMessage("Product added successfully!");
+      setNewProduct({
+        ProductName: "",
+        Description: "",
+        Price: "",
+        categoryId: "",
+        Image: "",
+      })
+    } else {
+      setMessage("Failed to add product.");
     }
-
-    try {
-      const response = await addProductService(newProduct);
-
-      if (response.success) {
-        setMessage("Product added successfully!");
-        setNewProduct({
-          ProductName: "",
-          Description: "",
-          Price: "",
-          categoryId: "",
-          Image: "",
-        })
-      } else {
-        setMessage("Failed to add product.");
-      }
-    } catch (error) {
+    }catch (error){
       setMessage("Error occurred while adding the product.");
     }
-  };
+  }
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Add New Product</h1>
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
-        <div className="mb-3">
-          <label htmlFor="ProductName" className="form-label">
+    <div className="flex flex-col justify-center items-center">
+      <h1 className="my-9 text-red-900 font-bold">Add New Product</h1>
+      <form onSubmit={handleSubmit} className='grid grid-rows-6 grid-cols-2'>
+          <label htmlFor="ProductName">
             Product Name:
           </label>
           <input
@@ -72,25 +59,21 @@ export const AddProduct = () => {
             id="ProductName"
             value={newProduct.ProductName}
             onChange={handleChange}
-            className="form-control"
+            className="border"
             required
           />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="Description" className="form-label">
-           Product Description:
+          <label htmlFor="Description">
+            Product Description:
           </label>
           <textarea
             name="Description"
             id="Description"
             value={newProduct.Description}
             onChange={handleChange}
-            className="form-control"
+            className="border"
           />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="Price" className="form-label">
-           Product Price:
+          <label htmlFor="Price">
+            Product Price:
           </label>
           <input
             type="number"
@@ -98,20 +81,18 @@ export const AddProduct = () => {
             id="Price"
             value={newProduct.Price}
             onChange={handleChange}
-            className="form-control"
+            className="border"
             required
           />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="categoryId" className="form-label">
-           Product Category:
+          <label htmlFor="categoryId">
+            Product Category:
           </label>
           <select
             name="categoryId"
             id="categoryId"
             value={newProduct.categoryId}
             onChange={handleChange}
-            className="form-control"
+            className="border"
             required
           >
             <option value="">Select a Category</option>
@@ -121,9 +102,8 @@ export const AddProduct = () => {
               </option>
             ))}
           </select>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="Image" className="form-label">
+
+          <label htmlFor="Image">
             Image URL:
           </label>
           <input
@@ -132,13 +112,14 @@ export const AddProduct = () => {
             id="Image"
             value={newProduct.Image}
             onChange={handleChange}
-            className="form-control"
+            className="border"
           />
-        </div>
-        <button type="submit" className="btn btn-primary w-100">
+
+        <button type="submit" className="border rounded bg-gray-200 col-span-2 max-h-9 mt-3">
           Add The Product
         </button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
 };

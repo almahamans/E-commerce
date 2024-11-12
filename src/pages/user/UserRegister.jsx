@@ -68,9 +68,15 @@ const handleSubmit = async (event) => {
 
       if (signInResponse.token) {
         localStorage.setItem("token", signInResponse.token);
-        localStorage.setItem("isSignIn", true);
-
-        navigate("/");
+        localStorage.setItem("isSignIn", true)
+        const getRole = localStorage.getItem("token")
+        if (getRole === "Customer") {
+          navigate("/customer-profile");
+        } else if (getRole === "Admin") {
+          navigate("/admin/dashboard");
+        } else {
+          console.log("error in navigatition");
+        }
       } else {
         setErrors({ ...errors, server: "SignIn failed after registration." });
       }

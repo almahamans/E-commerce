@@ -10,14 +10,17 @@ export const DisplayProducts = () => {
 
   return (
     <section className="flex flex-col justify-center items-center gap-4 bg-zinc-200 pt-9">
+      <h1 className='text-red-900 font-bold'>Products management</h1>
       <section className="flex flex-wrap justify-center items-center">
         {productsData &&
           productsData.map((product) => {
             return (
-              <ProductAdjustments key={product.productId} id={product.productId} />
+              <ProductAdjustments
+                key={product.productId}
+                id={product.productId}
+              />
             );
-          })
-        }
+          })}
       </section>
       <PaginationComponent />
     </section>

@@ -22,8 +22,8 @@ export const ProductAdjustments = ({ id }) => {
       console.log(response)
       setProduct(response.data);
     } catch (error) {
-      console.error("Error fetching product:", error);
-      setMessage("Failed to fetch product.");
+      console.error("Error fetching product:", error)
+      setMessage("Failed to fetch product.")
     }
   };
 
@@ -32,7 +32,7 @@ export const ProductAdjustments = ({ id }) => {
   }, [id]);
 
   if (!product) {
-    return <h1>Loading...</h1>;
+    return <h1>Loading...</h1>
   }
 
   const handleDelete = async () => {
@@ -75,22 +75,19 @@ export const ProductAdjustments = ({ id }) => {
       setMessage("Error occurred while updating the product.");
     }
   };
-
-  
-
-  console.log("products in adjusments",product)
+  // console.log("products in adjusments",product)
 
   return (
-    <section className="flex flex-col justify-center items-center border box-border m-5 w-80 h-80 bg-white">
-      <section className="flex items-center justify-center gap-7 m-5 h-96">
+    <section className="m-3 w-72 bg-white min-h-96">
+      <section className="flex flex-col items-center justify-center gap-5 ">
         <img
           src={product.image}
           alt={product.productName}
           className="w-32 h-32"
         />
-        <div>
+        <>
           {isEditing ? (
-            <>
+            <section className="grid grid-rows-6 gap-2">
               <input
                 type="text"
                 name="productName"
@@ -123,29 +120,41 @@ export const ProductAdjustments = ({ id }) => {
                   </option>
                 ))}
               </select>
-              <button onClick={handleSave} className="btn btn-primary">
-                Save
-              </button>
-              <button onClick={handleEditToggle} className="btn btn-secondary">
-                Cancel
-              </button>
-            </>
+              <section className="grid grid-cols-2 grid-rows-1 gap-3">
+                <button onClick={handleSave} className="">
+                  Save
+                </button>
+                <button onClick={handleEditToggle} className="">
+                  Cancel
+                </button>
+              </section>
+            </section>
           ) : (
-            <>
-              <h2>{product.productName}</h2>
-              <p>Price: ${product.price}</p>
-              <p>Description: {product.description}</p>
-              <button onClick={handleEditToggle} className="btn btn-primary">
-                Edit
-              </button>
-              <button onClick={handleDelete} className="btn btn-danger">
-                Delete
-              </button>
-            </>
+            <section className="flex flex-col justify-center items-center gap-2 flex-wrap">
+              <h2 className="">{product.productName}</h2>
+              <p className="">
+                Price: {product.price} <strong className="text-xs">SAR</strong>
+              </p>
+              <p className="text-center">Description: {product.description}</p>
+              <section className="grid grid-cols-2 grid-rows-1 gap-3 my-3">
+                <button
+                  onClick={handleEditToggle}
+                  className="border-2 border-grey-900 rounded p-1 text-sm"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={handleDelete}
+                  className="border-2 border-red-900 rounded p-1 text-sm"
+                >
+                  Delete
+                </button>
+              </section>
+            </section>
           )}
-        </div>
+        </>
       </section>
       {message && <p>{message}</p>}
     </section>
   );
-};
+}

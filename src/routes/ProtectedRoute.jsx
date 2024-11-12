@@ -8,6 +8,5 @@ export const ProtectedRoute = ({ requiredRole }) => {
   if (!token || role !== requiredRole) {
     return <Navigate to="/signin" replace />
   }
-    return <Outlet />
-  
+    return <Outlet replace/>
 };

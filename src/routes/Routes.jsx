@@ -18,6 +18,8 @@ import { AddProduct } from "../components/adminSide/adminFeatures/products/AddPr
 import { DisplayProducts } from "../components/adminSide/adminFeatures/products/DisplayProducts";
 import { ProductAdjustments } from "../components/adminSide/adminFeatures/products/ProductAdjusments";
 import { UsersControll } from "../components/adminSide/adminFeatures/users/UsersControll";
+import { CategoryAdjustment } from "../components/adminSide/adminFeatures/categories/CategoryAdjustment";
+import { DisplayCategories } from "../components/adminSide/adminFeatures/categories/DisplayCategories";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +88,14 @@ export const router = createBrowserRouter([
           {
             path: "display-users",
             element: <UsersControll />,
+          },
+          {
+            path: "display-categories",
+            element: <DisplayCategories />,
+          },
+          {
+            path: "category-adjustments/:id",
+            element: <CategoryAdjustment />,
           },
         ],
       },

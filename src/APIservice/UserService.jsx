@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
+const token = localStorage.getItem("token");
 
 export const UserRegister = async (userName, password, email) => {
   const url = `${baseUrl}/api/v1/auth/register`;
@@ -40,7 +41,6 @@ export const UserSignIn = async (email, password) => {
     console.log("response.data.token", response.data.token);
     return response.data;
   } catch (error) {
-    // Handle error based on backend's response
     if (error.response && error.response.data && error.response.data.message) {
       return(error.response.data.message);
     } else {
@@ -51,21 +51,33 @@ export const UserSignIn = async (email, password) => {
 
 export const getUserByIdService = async (id) => {
   const url = `${baseUrl}/api/v1/users`;
-  const response = await axios.get(`${url}/${id}`);
+  const response = await axios.get(`${url}/${id}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+  });
   console.log(response)
   return response.data;
 }
 
 export const getAllUsersService = async () => {
   const url = `${baseUrl}/api/v1/users`;
-  const response = await axios.get(url);
+  const response = await axios.get(url, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+  });
   console.log("inside service",response.data.data.items)
   return response.data;
 }
 
 export const deleteUserService = (id) => {
   const url = `${baseUrl}/api/v1/users/${id}`;
-  const response = axios.delete(url);
+  const response = axios.delete(url, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+  });
   console.log(response.data)
   return response.data;
 }

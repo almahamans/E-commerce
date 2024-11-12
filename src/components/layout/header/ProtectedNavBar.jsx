@@ -7,7 +7,7 @@ import { AdminNavBar } from './AdminNavBar';
 export const ProtectedNavBar = () => {
   const signedIn = localStorage.getItem("isSignIn");
   const role = localStorage.getItem("role");
-  
+  console.log(role)
   return (
     <header className="flex justify-around p-5 bg-gray-700">
       <div>
