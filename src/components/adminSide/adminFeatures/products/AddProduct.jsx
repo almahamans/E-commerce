@@ -120,7 +120,7 @@ export const AddProduct = () => {
           />
 
         <button type="submit" className="border rounded bg-gray-200 col-span-2 max-h-9 mt-3">
-          Add The Product
+          Add Product
         </button>
       </form>
       {message && <p className='text-center text-green-800'>{message}</p>}

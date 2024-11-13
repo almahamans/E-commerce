@@ -31,7 +31,7 @@ export const AddCategory = () => {
   return (
     <section className='mb-44'>
       <h1 className="text-center mt-5 font-bold text-red-900">
-        Add a new category
+        Add Category
       </h1>
       <Box
         component="form"
