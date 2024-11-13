@@ -48,9 +48,6 @@ export const UserRegisterForm = () => {
     } else if (!/[!@#$%^&*]/.test(user.password)) {
       newError.password = "Password must contain at least one special character (e.g., !@#$%^&*)";
     }
-    if (/^\d{10}$/.test(user.phone)) {
-      newError.phone = "Phone must be 10 digits length";
-    }
     
     setErrors(newError);
     return Object.keys(newError).length === 0;
@@ -159,24 +156,6 @@ const handleSubmit = async (event) => {
           />
           {errors.password && (
             <p className="text-red-500 text-center">{errors.password}</p>
-          )}
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="password" className="mr-5">
-            Phone:
-          </label>
-          <input
-            type="number"
-            name="phone"
-            id="phone"
-            value={user.phone}
-            onChange={handleChange}
-            required
-            className="border-2 border-gray-700 p-1 w-72"
-          />
-          {errors.phone && (
-            <p className="text-red-500 text-center">{errors.phone}</p>
           )}
         </div>
 

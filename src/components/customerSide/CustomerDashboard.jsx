@@ -32,8 +32,6 @@ export const CustomerDashboard = () => {
           <p>{userInfo.userName}</p>
           <p className="text-sm text-pink-900">Email:</p>
           <p>{userInfo.email}</p>
-          <p className="text-sm text-pink-900">Phone Number:</p>
-          <p>{userInfo.phone ? userInfo.phone : "05000000"}</p>
         </section>
       )}
     </section>
