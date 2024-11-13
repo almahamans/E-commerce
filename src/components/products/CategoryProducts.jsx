@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
 import { GetProductsByCategoryId } from '../../APIservice/ServiceProduct';
@@ -7,7 +7,6 @@ import { SingleProduct } from './productDetails/SingleProduct';
 export const CategoryProducts = () => {
   const { categoryId } = useParams();
   const [productdata, setproductdata] = useState(null)
-  // console.log("categoryIdddddddd", categoryId);
 
   const fetchProducts = async () => {
     const response = await GetProductsByCategoryId(categoryId);

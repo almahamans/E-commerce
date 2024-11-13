@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const NavBar = () => {
   return (
-    <section className="">
+    <section>
       <ul className="flex justify-around gap-9">
         <li>
           <Link to="/customer/categories">List Categories</Link>
@@ -15,7 +15,7 @@ export const NavBar = () => {
           <Link to="/customer/cart">Cart</Link>
         </li>
         <li>
-          <Link to="/customer/profile">profile</Link>
+          <Link to="/customer/profile">Profile</Link>
         </li>
       </ul>
     </section>

@@ -5,6 +5,7 @@ import { addCategoryService } from '../../../../APIservice/CategoryService';
 
 export const AddCategory = () => { 
   const [categoryName, setCategoryName] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     setCategoryName(e.target.value);
@@ -16,15 +17,19 @@ export const AddCategory = () => {
 
     try {
       const newCategory = await addCategoryService({ categoryName: categoryName });
-      console.log("New Category Created:", newCategory);
+      setMessage("Category added successfully!");
       setCategoryName("");
     } catch (error) {
-      console.error("Error adding category:", error);
+      setMessage("Failed to add category!");
     }
-  };
+
+    setTimeout(() => {
+      setMessage("");
+    }, 1500);
+  }
 
   return (
-    <section>
+    <section className='mb-44'>
       <h1 className="text-center mt-5 font-bold text-red-900">
         Add a new category
       </h1>
@@ -46,6 +51,7 @@ export const AddCategory = () => {
           Create
         </Button>
       </Box>
+      {message && <p className="text-center text-green-800">{message}</p>}
     </section>
   );
 };

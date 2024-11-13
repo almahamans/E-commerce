@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import logo from "../../../assets/logo-pandora.svg"
 import { CartContext } from '../../../context/CartContext';
 import { NavBar } from './NavBar';
 
@@ -17,32 +17,33 @@ export const ProtectedNavBar = () => {
     ClearCart();
   };
   return (
-    <header className="flex justify-around p-5 bg-gray-700">
-      <div>
-        <span>Logo/Name</span>
-      </div>
-      <div className="flex justify-around gap-9 text-white font-medium">
-        <Link to="/">Home</Link>
-        {signedIn && role === "Admin" && (
-          <Link to="/admin/dashboard">Dashboard</Link>
-        )}
-        {signedIn && role === "Customer" && (
-          <NavBar /> 
-        )        
-        }
-        {!signedIn && (
-          <ul className="flex justify-around gap-9">
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/signin">Sign In</Link>
-            </li>
-          </ul>
-        )}
-        <Link to="/" onClick={handleSignOut} replace>
-          Sign Out
-        </Link>
+    <header className=" bg-pink-200 medium:h-[7rem] h-[10rem] relative medium:mb-9 mb-12">
+      <div className="flex justify-around items-center p-5 bg-white absolute right-0 left-0 top-5 medium:flex-row flex-col">
+        <div>
+          <span>
+            <img src={logo} alt="pandora jewelry logo" width={"80%"} />
+          </span>
+        </div>
+        <div className="flex justify-around gap-9 text-black font-small">
+          <Link to="/">Home</Link>
+          {signedIn && role === "Admin" && (
+            <Link to="/admin/dashboard">Dashboard</Link>
+          )}
+          {signedIn && role === "Customer" && <NavBar />}
+          {!signedIn && (
+            <ul className="flex justify-around gap-9">
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
+              <li>
+                <Link to="/signin">Sign In</Link>
+              </li>
+            </ul>
+          )}
+          <Link to="/" onClick={handleSignOut} replace>
+            Sign Out
+          </Link>
+        </div>
       </div>
     </header>
   );

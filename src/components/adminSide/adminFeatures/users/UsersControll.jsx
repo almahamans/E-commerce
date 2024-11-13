@@ -1,39 +1,40 @@
 import React, { useState, useEffect } from 'react'
 
 import { deleteUserService, getAllUsersService } from "../../../../APIservice/UserService";
+import { useNavigate } from 'react-router-dom';
 
 export const UsersControll = () => {
   const [users, setUsers] = useState([]);
-
+const navigate = useNavigate();
   const handlefetch = async() => {
       try{
         const response = await getAllUsersService();
-      setUsers(response.data.items)
-      console.log("component",response.data.items)  
+      setUsers(response.data.items) 
       }catch(error){
           console.error(error)
       }  
   }
 
   const handleDelete = async(id) => {
-      try{
-          await deleteUserService(id);
-          setUsers((prevUsers)=>{
-              prevUsers.filter((user)=>{
-                  user.userId !== id
-              })
-          })
-      }catch(error){
-          console.log(error)
-      }
+    try{
+      await deleteUserService(id);
+      setUsers((prevUsers)=>{
+        prevUsers.filter((user)=>{
+            user.userId !== id
+        })
+      })
+      navigate("/admin/dashboard")
+    }catch(error){
+        console.log(error)
+    }
   }
 
   useEffect(()=>{
       handlefetch();
   },[])
-  console.log(users)
+
   return (
-    <div className="mt-3">
+    <div className="mt-3 mb-44">
       <h1 className="text-red-900 font-bold text-center mb-8">Users management</h1>
       {users && users.length > 0 ? (
         users.map((user) => {

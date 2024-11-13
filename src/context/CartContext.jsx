@@ -1,4 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const CartContext = createContext();
 
@@ -40,7 +42,8 @@ export const CartProvider = ({ children }) => {
       SaveCartToLocalStorage(updatedCart);
       console.log("updatedCart in adding", updatedCart);
       return updatedCart;
-    });
+    })
+    toast.success("Product Added to cart");
   };
 
   const RemoveFromCart = (productId) => {
@@ -63,6 +66,7 @@ export const CartProvider = ({ children }) => {
       }
       return productsCart;
     })
+    toast.success("Product removed from cart");
   }
 
   const ClearCart = () => {
@@ -85,6 +89,5 @@ export const CartProvider = ({ children }) => {
     >
       {children}
     </CartContext.Provider>
-  );
-};
-
+  )
+}

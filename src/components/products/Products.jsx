@@ -5,35 +5,17 @@ import { SingleProduct } from "./productDetails/SingleProduct";
 import { PaginationComponent } from "../../utilities/Pagination";
 import { SearchBar } from "../../utilities/SearchBar";
 import { SortFeature } from "../../utilities/SortFeature";
-import { getAllProducts } from "../../APIservice/ServiceProduct";
 
 
 export const Products = () => {
-  const { searchTerm, pageNumber, pageSize, sortBy, sortOrder } = useContext(ProductContext);
-  const [productsData, setProductsData] = useState([]);
-  console.log("productsData", productsData);
-
-  const fetchProducts = async () => {
-    try {
-      const response = await getAllProducts(
-        searchTerm,
-        pageNumber,
-        pageSize,
-        sortBy,
-        sortOrder
-      );
-      setProductsData(response.data.data.items);
-    }catch(error){
-      console.log(error)
-    }
-  }
+  const { fetchProducts, productsData } = useContext(ProductContext);
 
   useEffect(()=>{
     fetchProducts()
   }, [])
 
   return (
-    <section className="flex flex-col justify-center items-center gap-4 bg-zinc-200 pt-9">
+    <section className="flex flex-col justify-center items-center gap-4 mt-9">
       <div className="flex gap-2">
         <SearchBar />
         <SortFeature />

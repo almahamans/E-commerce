@@ -40,12 +40,14 @@ export const ProductAdjustments = ({ id }) => {
       try {
         await deleteProductService(id);
         setMessage("Product deleted successfully.");
-        // navigate("/admin/display-products");
       } catch (error) {
         console.error("Error deleting product:", error);
         setMessage("Failed to delete product.");
       }
     }
+    setTimeout(() => {
+      setMessage("");
+    }, 1500);
   };
 
   const handleEditToggle = () => {
@@ -74,12 +76,14 @@ export const ProductAdjustments = ({ id }) => {
       console.error("Error updating product:", error);
       setMessage("Error occurred while updating the product.");
     }
-  };
-  // console.log("products in adjusments",product)
+    setTimeout(() => {
+      setMessage("");
+    }, 1500);
+  }
 
   return (
     <section className="m-3 w-72 bg-white min-h-96">
-      <section className="flex flex-col items-center justify-center gap-5 ">
+      <section className="flex flex-col items-center justify-center gap-5 border-pink-900 border">
         <img
           src={product.image}
           alt={product.productName}
@@ -87,7 +91,7 @@ export const ProductAdjustments = ({ id }) => {
         />
         <>
           {isEditing ? (
-            <section className="grid grid-rows-6 gap-2">
+            <section className="grid grid-rows-6 gap-2 max-h-56">
               <input
                 type="text"
                 name="productName"
@@ -130,12 +134,12 @@ export const ProductAdjustments = ({ id }) => {
               </section>
             </section>
           ) : (
-            <section className="flex flex-col justify-center items-center gap-2 flex-wrap">
-              <h2 className="">{product.productName}</h2>
-              <p className="">
+            <section className="flex flex-col justify-center items-center gap-2 flex-wrap mx-5 text-center">
+              <h2>{product.productName}</h2>
+              <p>
                 Price: {product.price} <strong className="text-xs">SAR</strong>
               </p>
-              <p className="text-center">Description: {product.description}</p>
+              <p className="">Description: {product.description}</p>
               <section className="grid grid-cols-2 grid-rows-1 gap-3 my-3">
                 <button
                   onClick={handleEditToggle}
@@ -154,7 +158,7 @@ export const ProductAdjustments = ({ id }) => {
           )}
         </>
       </section>
-      {message && <p>{message}</p>}
+      {message && <p className="text-center text-green-800">{message}</p>}
     </section>
   );
 }

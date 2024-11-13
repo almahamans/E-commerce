@@ -1,5 +1,10 @@
 import React from 'react'
 
 export const Description = ({ Description }) => {
-  return <p>{Description}</p>;
+  return (
+    <p>
+      <span>Description: </span>
+      {Description}
+    </p>
+  );
 };

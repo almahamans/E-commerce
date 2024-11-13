@@ -44,11 +44,15 @@ export const AddProduct = () => {
     }catch (error){
       setMessage("Error occurred while adding the product.");
     }
+
+    setTimeout(() => {
+      setMessage("");
+    }, 1500);
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <h1 className="my-9 text-red-900 font-bold">Add New Product</h1>
+    <div className="flex flex-col justify-center items-center mb-12">
+      <h1 className="my-5 text-red-900 font-bold">Add New Product</h1>
       <form onSubmit={handleSubmit} className='grid grid-rows-6 grid-cols-2'>
           <label htmlFor="ProductName">
             Product Name:
@@ -119,7 +123,7 @@ export const AddProduct = () => {
           Add The Product
         </button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className='text-center text-green-800'>{message}</p>}
     </div>
   );
 };

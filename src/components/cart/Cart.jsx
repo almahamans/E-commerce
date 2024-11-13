@@ -1,5 +1,6 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import { CartContext } from '../../context/CartContext';
 import { Image } from '../Image';
@@ -21,8 +22,8 @@ export const Cart = () => {
       navigate(`/customer/product-details/${productId}`);
     };
  return (
-   <div className='mb-9'>
-     <h1 className="text-center font-bold p-9 text-red-900">Cart:</h1>
+   <div className="mb-9 mb-44">
+     <h1 className="text-center font-bold p-9 text-red-900">Your Cart:</h1>
      {userCart.length === 0 ? (
        <h1 className="text-center font-bold">Your cart is empty</h1>
      ) : (
@@ -48,12 +49,24 @@ export const Cart = () => {
                <button onClick={() => RemoveFromCart(item.productId)}>
                  Remove
                </button>
+               <ToastContainer
+                 position="top-center"
+                 autoClose={1000}
+                 hideProgressBar
+                 newestOnTop={false}
+                 closeOnClick
+                 rtl={false}
+                 pauseOnFocusLoss
+                 draggable
+                 pauseOnHover={false}
+                 theme="light"
+               />
              </div>
            </div>
          </div>
        ))
      )}
-     <div className='flex justify-evenly items-center p-5'>
+     <div className="flex justify-evenly items-center p-5">
        {userCart.length > 0 && <button onClick={ClearCart}>Clear Cart</button>}
        {userCart.length > 0 && <p>Total Cart: {totalPrice}</p>}
      </div>

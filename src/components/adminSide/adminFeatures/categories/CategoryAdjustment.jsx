@@ -69,11 +69,15 @@ export const CategoryAdjustment = ({ id }) => {
     }
   };
 
-  console.log("products in adjusments", category);
+  setTimeout(() => {
+    setMessage("");
+  }, 1500);
+
+
 
   return (
     <section className="m-3 w-72 bg-white ">
-      <section className="flex flex-col items-center justify-center gap-5">
+      <section className="flex flex-col items-center justify-center gap-5 border-pink-900 border">
         <>
           {isEditing ? (
             <section className="grid grid-rows-2 grid-cols-2  gap-2">
@@ -84,12 +88,12 @@ export const CategoryAdjustment = ({ id }) => {
                 onChange={handleInputChange}
                 className="border-2 col-span-2 p-1 mt-2"
               />
-                <button onClick={handleSave} className="">
-                  Save
-                </button>
-                <button onClick={handleEditToggle} className="">
-                  Cancel
-                </button>
+              <button onClick={handleSave} className="">
+                Save
+              </button>
+              <button onClick={handleEditToggle} className="">
+                Cancel
+              </button>
             </section>
           ) : (
             <section className="flex flex-col justify-center items-center gap-2 flex-wrap">
@@ -112,7 +116,7 @@ export const CategoryAdjustment = ({ id }) => {
           )}
         </>
       </section>
-      {message && <p>{message}</p>}
+      {message && <p className="text-center text-green-800">{message}</p>}
     </section>
   );
 }

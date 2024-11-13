@@ -12,7 +12,7 @@ export const PaginationComponent = () => {
 
   const handleChange = (event, value) => {
     setPageNumber(value);
-    console.log("page number", value);
+    console.log("value", value);
   };
 
   return (
@@ -23,7 +23,7 @@ export const PaginationComponent = () => {
         onChange={handleChange}
         variant="outlined"
         shape="rounded"
-        sx={{ marginTop: 3 }}
+        sx={{ marginTop: 3, marginBottom: 5}}
       />
     </>
   );

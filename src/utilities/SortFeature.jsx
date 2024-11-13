@@ -16,11 +16,11 @@ const handleSortOrderChange = (event) => {
 
     return (
       <div>
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+        <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
           <InputLabel id="sortByInputLabel">Sort By:</InputLabel>
           <Select
             labelId="sortByInputLabel"
-            id='sort-by-id'
+            id="sort-by-id"
             value={sortBy}
             label="Sort By"
             onChange={handleSortByChange}
@@ -35,7 +35,7 @@ const handleSortOrderChange = (event) => {
           <InputLabel id="sortOrderInputlabel">Sort Order:</InputLabel>
           <Select
             labelId="sortOrderInputlabel"
-            id='sort-order-id'
+            id="sort-order-id"
             value={sortOrder}
             label="Sort Order"
             onChange={handleSortOrderChange}
