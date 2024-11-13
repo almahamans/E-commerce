@@ -18,7 +18,7 @@ export const Cart = () => {
     )
     
     const handleDetailsClick = (productId) => {
-      navigate(`/product-details/${productId}`);
+      navigate(`/customer/product-details/${productId}`);
     };
  return (
    <div className='mb-9'>

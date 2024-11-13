@@ -8,7 +8,6 @@ export const CustomerDashboard = () => {
   console.log(customerId)
   const handleFetchData = async () => {
     try {
-  
       const response = await getUserByIdService(customerId);
       setUserInfo(response);
       console.log(response);

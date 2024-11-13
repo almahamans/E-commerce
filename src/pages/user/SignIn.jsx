@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
 import { UserSignIn } from '../../APIservice/UserService';
 import { TokenDecode } from '../../utilities/TokenDecode';
-import { jwtDecode } from 'jwt-decode';
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -39,14 +39,15 @@ export const SignIn = () => {
       localStorage.setItem("role", decodedUser.role); 
 
       const decodedUserId = jwtDecode(userSignInfo.token);
-      console.log("signinpagee:", decodedUserId.nameid);
+      console.log("signin  pagee:", decodedUserId.nameid);
       localStorage.setItem("userId", decodedUserId.nameid);
 
       const getRole = localStorage.getItem("role"); 
       if(getRole === "Customer"){
-        navigate("/customer-profile");
+        navigate("/");
       }else if (getRole === "Admin"){
         navigate("/admin/dashboard")
+        
       }else{
         console.log("error in navigatition")
       }

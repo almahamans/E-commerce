@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/",
+        path: "/customer",
         element: <ProtectedRoute requiredRole="Customer" />,
         children: [
           {
@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
             element: <ProductDetails />,
           },
           {
-            path: "customer-profile",
+            path: "profile",
             element: <CustomerDashboard />,
           },
           {

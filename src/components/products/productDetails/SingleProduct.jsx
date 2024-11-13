@@ -10,7 +10,7 @@ export const SingleProduct = ({ products }) => {
   const navigate = useNavigate();
   // console.log("single", products)
   const handleDetailsClick = () => {
-    navigate(`/product-details/${products.productId}`);
+    navigate(`/customer/product-details/${products.productId}`);
   };
 
   return (

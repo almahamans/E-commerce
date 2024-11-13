@@ -74,12 +74,12 @@ const handleSubmit = async (event) => {
       if (signInResponse.token) {
         localStorage.setItem("token", signInResponse.token);
         localStorage.setItem("isSignIn", true)
-        
+        localStorage.setItem("role", signInResponse.role); 
         // localStorage.setItem("userID", signInResponse)
 
-        const getRole = localStorage.getItem("token")
+        const getRole = localStorage.getItem("role");
         if (getRole === "Customer") {
-          navigate("/customer-profile");
+          navigate("/");
         } else if (getRole === "Admin") {
           navigate("/admin/dashboard");
         } else {

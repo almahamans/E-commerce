@@ -1,9 +1,11 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 
 export const AdminDashboard = () => {
     return (
       <div className="m-2">
+
         <h1 className="text-center mt-5 font-bold text-red-900">
           Admin Dashboard
         </h1>
