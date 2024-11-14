@@ -65,26 +65,27 @@ const handleSubmit = async (event) => {
       );
       console.log("user register info", registerResponse);
       // automatically log in the user after registration and set loaclstorage
-      const signInResponse = await UserSignIn(user.email, user.password);
-      console.log("signin info", signInResponse);
+      // const signInResponse = await UserSignIn(user.email, user.password);
+      // console.log("signin info", signInResponse);
 
-      if (signInResponse.token) {
-        localStorage.setItem("token", signInResponse.token);
-        localStorage.setItem("isSignIn", true)
-        localStorage.setItem("role", signInResponse.role); 
-        // localStorage.setItem("userID", signInResponse)
+      // if (signInResponse.token) {
+      //   localStorage.setItem("token", signInResponse.token);
+      //   localStorage.setItem("isSignIn", true)
+      //   localStorage.setItem("role", signInResponse.role); 
+      //   // localStorage.setItem("userID", signInResponse)
 
-        const getRole = localStorage.getItem("role");
-        if (getRole === "Customer") {
-          navigate("/");
-        } else if (getRole === "Admin") {
-          navigate("/admin/dashboard");
-        } else {
-          console.log("error in navigatition");
-        }
-      } else {
-        setErrors({ ...errors, server: "SignIn failed after registration." });
-      }
+      //   const getRole = localStorage.getItem("role");
+      //   if (getRole === "Customer") {
+      //     navigate("/");
+      //   } else if (getRole === "Admin") {
+      //     navigate("/admin/dashboard");
+      //   } else {
+      //     console.log("error in navigatition");
+      //   }
+      // } else {
+      //   setErrors({ ...errors, server: "SignIn failed after registration." });
+      // }
+      navigate("/signin")
     } catch (error) {
       console.error("registration failed:", error);
       setErrors({
