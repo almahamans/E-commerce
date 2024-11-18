@@ -1,48 +1,35 @@
-# Project: Frontend for E-commerce Website
+# Frontend for E-commerce platform
+This repository contains the frontend implementation of a dynamic e-commerce platform. Built with a modern tech stack, it provides a seamless and interactive user experience for customers and admins.
 
-This project is a frontend for an e-commerce website, developed using modern web technologies. It provides an interactive platform for users to browse and purchase products, while also offering a management dashboard for administrators to handle products, users, and orders. The project is built with a focus on a smooth and intuitive user experience, with added functionalities for searching, filtering, and managing products.
+## Features
+- User Authentication:
+Secure login and registration with JWT integration.
+Role-based navigation and access (Customer & Admin).
+Product Browsing
 
-**Deadline: 14/11/2024**
+- Search, sort and filter functionality:
+Pagination for improved performance and user experience.
+Responsive product display grid.
 
-### Level 1: Basic Requirements
+- Cart:
+Add, update, and remove items in the cart.
+Save items to wishlist for future reference.
 
-**Pages to Create:**
+- Admin Features:
+Dashboard to manage products and categories.
+Add, edit, and delete products and categories.
 
-1. Home page
-2. Product page(list all the products)
-3. Product Detail(contain the details of a product)
-4. Dashboard page
+## Technology used:
+- VITE
+- React JS
+- JWT
+- axios
+- React-Router
+- TailwindCss
+- .env
+  
+### Live Link:
+https://e-commerce-gamma-lac-90.vercel.app/
 
-**Functionalities for a Visitor:**
-
-- Get list of products
-- Search products by name
-- Filter products price
-- Add products to a cart
-- Remove products from a cart
-
-**Functionalities for an Admin:**
-
-- Add a new product, update info of a product, remove a product
-
-### Level 2: Additional Requirements
-
-**Authentication:**
-
-- Implement register and login functionality via email and password
-- Protect the routes based on login and admin status
-
-**Functionalities for an Admin:**
-
-- list all users, delete a user.
-- list all orders
-
-### Level 3: Bonus Requirement (Optional)
-
-- Messages, show loading, success, and error messages (e.g., when loading products list or adding new product)
-- Implement pagination feature
-- Create a Profile Page (only available if user logs in), implement editing user profile feature (user can change first name, last name)
-
-`Please note that the bonus requirements and reviews are optional and can be completed if you have additional time and advanced skills.`
-
-Happy coding!
+#### Future work:
+Enable customers to make orders and display shipment status.
