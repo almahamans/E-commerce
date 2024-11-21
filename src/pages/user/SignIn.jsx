@@ -46,10 +46,7 @@ export const SignIn = () => {
       if(getRole === "Customer"){
         navigate("/");
       }else if (getRole === "Admin"){
-        navigate("/admin/dashboard")
-        
-      }else{
-        console.log("error in navigatition")
+        navigate("/admin/dashboard")    
       }
     } else {
       console.error("Email/Password is incorrect");

@@ -7,15 +7,12 @@ import { Image } from '../Image';
 import { Title } from '../Title';
 import { Price } from '../products/productDetails/Price';
 import { Quantity } from '../products/productDetails/Quantity';
-import { createOrder } from '../../APIservice/OrderService';
+
 
 
 export const Cart = () => {
-    const { userCart, RemoveFromCart, ClearCart, totalAmount } =
-      useContext(CartContext);
+    const { userCart, RemoveFromCart, ClearCart, totalAmount } = useContext(CartContext);
     const navigate = useNavigate();
-    
-
     
     const handleDetailsClick = (productId) => {
       navigate(`/customer/product-details/${productId}`);
@@ -26,7 +23,9 @@ export const Cart = () => {
     }
  return (
    <div className="mb-44">
-     <h1 className="text-center font-bold p-9 text-red-900">Your Cart:</h1>
+     <h1 className="text-center font-bold p-9 text-red-900 text-lg">
+      Cart:
+     </h1>
      {userCart.length === 0 ? (
        <h1 className="text-center font-bold">Your cart is empty</h1>
      ) : (
@@ -81,12 +80,14 @@ export const Cart = () => {
        {userCart.length > 0 && (
          <p className="underline text-pink-900 ">Total Cart: {totalAmount}</p>
        )}
-       <button
-         onClick={handleOrder}
-         className="text-pink-900 text-sm border rounded-full border-pink-900 py-1 px-5 text-pink-900"
-       >
-         Continue with order
-       </button>
+       {userCart.length > 0 && (
+         <button
+           onClick={handleOrder}
+           className="text-pink-900 text-sm border rounded-full border-pink-900 py-1 px-5 text-pink-900"
+         >
+           Continue with order
+         </button>
+       )}
      </div>
    </div>
  );

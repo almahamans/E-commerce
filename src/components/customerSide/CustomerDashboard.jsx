@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { getUserByIdService, updateUserInfoService } from '../../APIservice/UserService';
 
+
 export const CustomerDashboard = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [updatedUserInfo, setUpdatedUserInfo] = useState({});

@@ -5,7 +5,7 @@ import { CartContext } from '../../context/CartContext';
 
 export const CreateOrder = () => {
   const userId = localStorage.getItem("userId");
-  const { userCart, totalAmount } = useContext(CartContext);
+  const { userCart, totalAmount, ClearCart } = useContext(CartContext);
 
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -25,6 +25,11 @@ export const CreateOrder = () => {
     try {
       const response = await createOrder(orderData);
       console.log("Order created successfully", response.data);
+      ClearCart()
+      setAddress("")
+      setCity("")
+      setCardName("")
+      setCardNumber(0)
     } catch (err) {
       console.error("Error creating order:", err);
     } finally {

@@ -79,8 +79,6 @@ const handleSubmit = async (event) => {
           navigate("/");
         } else if (getRole === "Admin") {
           navigate("/admin/dashboard");
-        } else {
-          console.log("error in navigatition");
         }
       } else {
         setErrors({ ...errors, server: "SignIn failed after registration." });
