@@ -11,13 +11,11 @@ import { createOrder } from '../../APIservice/OrderService';
 
 
 export const Cart = () => {
-    const { userCart, RemoveFromCart, ClearCart } = useContext(CartContext);
+    const { userCart, RemoveFromCart, ClearCart, totalAmount } =
+      useContext(CartContext);
     const navigate = useNavigate();
     
-    const totalPrice = userCart.reduce(
-    (total, item) => total + (item.price * item.quantity),
-      0
-    )
+
     
     const handleDetailsClick = (productId) => {
       navigate(`/customer/product-details/${productId}`);
@@ -81,14 +79,13 @@ export const Cart = () => {
          </button>
        )}
        {userCart.length > 0 && (
-         <p className="underline text-pink-900 ">
-           Total Cart: {totalPrice}
-         </p>
+         <p className="underline text-pink-900 ">Total Cart: {totalAmount}</p>
        )}
-       <button 
-          onClick={handleOrder}
-          className="text-pink-900 text-sm border rounded-full border-pink-900 py-1 px-5 text-pink-900">
-          Continue with order
+       <button
+         onClick={handleOrder}
+         className="text-pink-900 text-sm border rounded-full border-pink-900 py-1 px-5 text-pink-900"
+       >
+         Continue with order
        </button>
      </div>
    </div>
