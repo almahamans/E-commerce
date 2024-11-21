@@ -20,6 +20,7 @@ import { ProductAdjustments } from "../components/adminSide/adminFeatures/produc
 import { UsersControll } from "../components/adminSide/adminFeatures/users/UsersControll";
 import { CategoryAdjustment } from "../components/adminSide/adminFeatures/categories/CategoryAdjustment";
 import { DisplayCategories } from "../components/adminSide/adminFeatures/categories/DisplayCategories";
+import { CreateOrder } from "../components/orders/CreateOrder";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
           {
             path: "cart",
             element: <Cart />,
+          },
+          {
+            path: "complete-order",
+            element: <CreateOrder />,
           },
         ],
       },

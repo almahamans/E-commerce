@@ -7,22 +7,27 @@ import { Image } from '../Image';
 import { Title } from '../Title';
 import { Price } from '../products/productDetails/Price';
 import { Quantity } from '../products/productDetails/Quantity';
+import { createOrder } from '../../APIservice/OrderService';
 
 
 export const Cart = () => {
     const { userCart, RemoveFromCart, ClearCart } = useContext(CartContext);
     const navigate = useNavigate();
-
+    
     const totalPrice = userCart.reduce(
     (total, item) => total + (item.price * item.quantity),
-        0
+      0
     )
     
     const handleDetailsClick = (productId) => {
       navigate(`/customer/product-details/${productId}`);
     };
+
+    const handleOrder = async() => {
+      navigate("/customer/complete-order")
+    }
  return (
-   <div className="mb-9 mb-44">
+   <div className="mb-44">
      <h1 className="text-center font-bold p-9 text-red-900">Your Cart:</h1>
      {userCart.length === 0 ? (
        <h1 className="text-center font-bold">Your cart is empty</h1>
@@ -66,9 +71,25 @@ export const Cart = () => {
          </div>
        ))
      )}
-     <div className="flex justify-evenly items-center p-5">
-       {userCart.length > 0 && <button onClick={ClearCart}>Clear Cart</button>}
-       {userCart.length > 0 && <p>Total Cart: {totalPrice}</p>}
+     <div className="flex justify-evenly items-center p-5 mt-9">
+       {userCart.length > 0 && (
+         <button
+           onClick={ClearCart}
+           className="border rounded-full border-pink-900 py-1 px-5 text-pink-900 text-sm"
+         >
+           Clear Cart
+         </button>
+       )}
+       {userCart.length > 0 && (
+         <p className="underline text-pink-900 ">
+           Total Cart: {totalPrice}
+         </p>
+       )}
+       <button 
+          onClick={handleOrder}
+          className="text-pink-900 text-sm border rounded-full border-pink-900 py-1 px-5 text-pink-900">
+          Continue with order
+       </button>
      </div>
    </div>
  );

@@ -31,10 +31,10 @@ export const ProductDetails = () => {
   return (
     <section
       key={product.id}
-      className="flex items-center justify-center gap-9 m-5 h-96 "
+      className="flex flex-col items-center justify-center gap-9 mx-auto h-96 w-[20rem] mb-12 small:w-[30rem] small:flex-row"
     >
       <div>
-        <Image Image={product.image} Title={product.productName} />
+        <Image Image={product.image} Title={product.productName} style="w-56" />
       </div>
       <div className="flex flex-col gap-3">
         <Title Name={product.productName} />
