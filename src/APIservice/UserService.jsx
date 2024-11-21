@@ -81,3 +81,14 @@ export const deleteUserService = (id) => {
   console.log(response.data)
   return response.data;
 }
+
+export const updateUserInfoService = (id, info) => {
+  const url = `${baseUrl}/api/v1/users/${id}`;
+  const response = axios.put(url, info, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+  });
+  console.log(response.data);
+  return response.data;
+};
